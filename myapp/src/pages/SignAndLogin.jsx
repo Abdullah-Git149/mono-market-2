@@ -5,8 +5,8 @@ import { userSave } from "../store/actions/userAction";
 // import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Homefooter from "../components/Homefooter";
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignAndLogin = (props) => {
   const [state, setState] = useState({
     user_fullname: "",
@@ -69,6 +69,7 @@ const SignAndLogin = (props) => {
     // }
     dispatch(userSave(state));
     console.log("data", state);
+
   };
   return (
     <>
@@ -347,7 +348,7 @@ const SignAndLogin = (props) => {
                                         value={state.user_country}
                                         id=""
                                         onChange={handleInputs}
-                                        style={{color:"black"}}
+                                        style={{ color: "black" }}
                                       >
                                         <option value="pakistan"> pakistan </option>
                                         <option value="america">america</option>
@@ -361,7 +362,7 @@ const SignAndLogin = (props) => {
                                       <select
                                         name="user_currency"
                                         value={state.user_currency}
-                                        style={{color:"black"}}
+                                        style={{ color: "black" }}
                                         id=""
                                         onChange={handleInputs}
                                       >

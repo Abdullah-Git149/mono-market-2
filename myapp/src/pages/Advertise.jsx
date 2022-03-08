@@ -1,7 +1,23 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
-const Profile = () => {
+import { useState } from "react";
+const Advertise = () => {
+  const [state, setState] = useState({
+    amount: 0,
+    post_currency: ""
+  })
+  const handleInputs = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    })
+    console.log(state)
+  }
+  const createPost = (e) => {
+    e.preventDefault()
+    console.log("complete",state)
+  }
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   const logOutUser = () => {
@@ -149,7 +165,7 @@ const Profile = () => {
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix align_center">
-                                <h1>Profile</h1>
+                                <h1>Post an AD</h1>
                                 <h5 className="themecolor">
                                   Suspendisse a pellentesque dui, non felis.
                                   Maecenas malesuada elit
@@ -172,7 +188,7 @@ const Profile = () => {
                           style={{ marginTop: "-160px" }}
                         >
                           <div className="mcb-wrap-inner">
-                          <div
+                            <div
                               style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -183,7 +199,7 @@ const Profile = () => {
                               {/* <h4>Profile Image</h4>
                             
                              <img src={user.user_images} alt="" /> */}
-                            
+
                             </div>
                             <div
                               style={{
@@ -263,7 +279,58 @@ const Profile = () => {
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one-second column_column">
-                              <Link to="/advertise">Create an AD</Link>
+                              <div id="contactWrapper">
+                                <form
+                                  onSubmit={createPost}
+                                  id="contactform"
+                                  method="POST"
+                                >
+                                  <div className="column one">
+                                    <label htmlFor="amount">Select An Amount</label>
+                                    <input
+                                      id="amount"
+                                      placeholder="Amount"
+                                      type="number"
+                                      name="amount"
+                                      value={state.amount}
+                                      onChange={handleInputs}
+                                      size={40}
+                                      aria-invalid="false"
+                                    />
+                                  </div>
+                                  <div className="column one">
+                                    <select
+                                      name="post_currency"
+                                      style={{ color: "black" }}
+                                      value={state.post_currency}
+                                      onChange={handleInputs}
+
+
+
+                                    >
+                                      <option value="">-- Select Currency --</option>
+                                      <option value="ruppee">ruppee</option>
+                                      <option value="dollar">dollar</option>
+                                      <option value="pound">pound</option>
+                                      <option value="euro">euro</option>
+                                      <option value="naira">naira</option>
+                                      <option value="mexican peso">mexican peso</option>
+
+
+                                    </select>
+                                  </div>
+
+                                  {/* One Second (1/2) Column */}
+
+                                  <div className="column one">
+                                    <input
+                                      type="submit"
+                                      defaultValue="Create Post"
+                                      id="submit"
+                                    />
+                                  </div>
+                                </form>
+                              </div>
                             </div>
                             <div className="column mcb-column one-second column_column">
                               <div
@@ -443,7 +510,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <Homefooter/>
+            <Homefooter />
           </div>
           {/* side menu */}
           <div id="Side_slide" className="right dark" data-width={250}>
@@ -471,4 +538,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Advertise;

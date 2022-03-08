@@ -32,6 +32,7 @@ const SignIn = () => {
     if (loginErrors.length > 0) {
       loginErrors.map((error) => toast.error(error.msg));
     }
+    
     if (user) {
       navigate("/profile");
     }

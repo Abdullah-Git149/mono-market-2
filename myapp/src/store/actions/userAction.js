@@ -40,6 +40,7 @@ export const userSave = (state) => {
         }
       );
       dispatch({ type: CLOSE_LOADER });
+      
       // localStorage.setItem("mytoken", data.token);
       // dispatch({ type: SET_TOKEN, payload: data.token });
       console.log("db data", data);
