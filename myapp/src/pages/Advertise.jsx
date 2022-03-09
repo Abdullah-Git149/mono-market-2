@@ -5,9 +5,25 @@ import { useState } from "react";
 const Advertise = () => {
   const [state, setState] = useState({
     amount: 0,
-    post_currency: ""
+    post_currency: "",
+    ratio: ""
   })
+
   const handleInputs = (e) => {
+    const { post_currency, ratio } = state
+    if (post_currency === "nairo") {
+      ratio = "1.59"
+    } else if (post_currency === "dollar") {
+      ratio = "2.1"
+    } else if (post_currency === "pound") {
+      ratio = "1.4"
+    } else if (post_currency === "mexican peso") {
+      ratio = "1.6"
+    } else if (post_currency === "pound") {
+      ratio = "1.9"
+    } else if (post_currency === "euro") {
+      ratio = "2.1"
+    }
     setState({
       ...state,
       [e.target.name]: e.target.value
@@ -16,7 +32,7 @@ const Advertise = () => {
   }
   const createPost = (e) => {
     e.preventDefault()
-    console.log("complete",state)
+    console.log("complete", state)
   }
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
@@ -24,7 +40,16 @@ const Advertise = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
   };
+  // const popluate = (s1, s2) => {
+  //   // console.log(s1, s2)
+  //   var v1 = document.getElementById(s1)
+  //   var v2 = document.getElementById(s2)
+  //   console.log(v1, v2)
 
+  //   if (v1.value === "euro") {
+
+  //   }
+  // }
   const Links = user ? (
     <li>
       <Link to="/">
@@ -294,6 +319,7 @@ const Advertise = () => {
                                       name="amount"
                                       value={state.amount}
                                       onChange={handleInputs}
+
                                       size={40}
                                       aria-invalid="false"
                                     />
@@ -301,25 +327,42 @@ const Advertise = () => {
                                   <div className="column one">
                                     <select
                                       name="post_currency"
-                                      style={{ color: "black" }}
-                                      value={state.post_currency}
+                                      style={{ color: "white" }}
+                                      value={state.post_currency.name}
                                       onChange={handleInputs}
-
-
-
+                                      id="sclt1"
                                     >
-                                      <option value="">-- Select Currency --</option>
-                                      <option value="ruppee">ruppee</option>
-                                      <option value="dollar">dollar</option>
-                                      <option value="pound">pound</option>
-                                      <option value="euro">euro</option>
-                                      <option value="naira">naira</option>
-                                      <option value="mexican peso">mexican peso</option>
+                                      {/* {
+                                        state.post_currency.map((data) => {
+                                          <option value={data.name} selected={data.name}>{data.name}</option>
+                                        })
+                                      } */}
+
+                                      <option style={{ backgroundColor: "black" }} selected value="" disabled>-- Select Currency --</option>
+                                      <option style={{ backgroundColor: "black" }} value="ruppee">ruppee</option>
+                                      <option style={{ backgroundColor: "black" }} value="dollar">dollar</option>
+                                      <option style={{ backgroundColor: "black" }} value="pound">pound</option>
+                                      <option style={{ backgroundColor: "black" }} value="euro">euro</option>
+                                      <option style={{ backgroundColor: "black" }} value="naira">naira</option>
+                                      <option style={{ backgroundColor: "black" }} value="mexican peso">mexican peso</option>
 
 
                                     </select>
                                   </div>
 
+                                  <div className="column one">
+                                    <input
+                                      id="sclt2"
+                                      placeholder="Ratio"
+                                      type="text"
+                                      name="ratio"
+                                      value={state.ratio}
+                                      disabled
+                                      onChange={handleInputs}
+                                      size={40}
+                                      aria-invalid="false"
+                                    />
+                                  </div>
                                   {/* One Second (1/2) Column */}
 
                                   <div className="column one">
