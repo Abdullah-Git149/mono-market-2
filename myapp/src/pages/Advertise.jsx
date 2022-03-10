@@ -1,41 +1,89 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPost } from "../store/actions/postAction"
 const Advertise = () => {
+
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.AuthReducer);
+  const { _id, user_fullname } = user
+  console.log(_id, user_fullname);
   const [state, setState] = useState({
     amount: 0,
     post_currency: "",
-    ratio: ""
+    ratio: "",
+    calcValue: 0
   })
 
+
+
   const handleInputs = (e) => {
-    const { post_currency, ratio } = state
-    if (post_currency === "nairo") {
-      ratio = "1.59"
-    } else if (post_currency === "dollar") {
-      ratio = "2.1"
-    } else if (post_currency === "pound") {
-      ratio = "1.4"
-    } else if (post_currency === "mexican peso") {
-      ratio = "1.6"
-    } else if (post_currency === "pound") {
-      ratio = "1.9"
-    } else if (post_currency === "euro") {
-      ratio = "2.1"
+    if (state.post_currency === "naira") {
+      state.ratio = "2.3"
+      state.calcValue = state.amount * 2.3
+
+    }else if (state.post_currency === "dollar") {
+      state.ratio = "2"
+      state.calcValue = state.amount * 2
+
+    }else if (state.post_currency === "euro") {
+      state.ratio = "2.5"
+      state.calcValue = state.amount * 2.5
+
+    }else if (state.post_currency === "pound") {
+      state.ratio = "2.1"
+      state.calcValue = state.amount * 2.1
     }
+
     setState({
       ...state,
       [e.target.name]: e.target.value
     })
+
+    // if (state.post_currency === "naira") {
+    //   setState({
+    //     ...state,
+    //     ratio: "2.3",
+    //     calcValue: state.amount * 2.3,
+    //     [e.target.name]: e.target.value,
+
+    //   })
+
+    // } else if (state.post_currency === "dollar") {
+    //   setState({
+    //     ...state,
+    //     ratio: "2",
+    //     calcValue: state.amount * 2,
+    //     [e.target.name]: e.target.value,
+
+    //   })
+    // } else if (state.post_currency === "euro") {
+    //   setState({
+    //     ...state,
+    //     ratio: "2.5",
+    //     calcValue: state.amount * 2.5,
+    //     [e.target.name]: e.target.value,
+
+    //   })
+    // } else if (state.post_currency === "pound") {
+    //   setState({
+    //     ...state,
+    //     ratio: "2.1",
+    //     calcValue: state.amount * 2.1,
+    //     [e.target.name]: e.target.value,
+
+    //   })
+    // }
+
     console.log(state)
   }
   const createPost = (e) => {
     e.preventDefault()
     console.log("complete", state)
   }
-  const { user } = useSelector((state) => state.AuthReducer);
-  const dispatch = useDispatch();
+
+
   const logOutUser = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
@@ -328,7 +376,7 @@ const Advertise = () => {
                                     <select
                                       name="post_currency"
                                       style={{ color: "white" }}
-                                      value={state.post_currency.name}
+                                      value={state.post_currency}
                                       onChange={handleInputs}
                                       id="sclt1"
                                     >
@@ -338,7 +386,7 @@ const Advertise = () => {
                                         })
                                       } */}
 
-                                      <option style={{ backgroundColor: "black" }} selected value="" disabled>-- Select Currency --</option>
+                                      <option style={{ backgroundColor: "black" }} value="" disabled>-- Select Currency --</option>
                                       <option style={{ backgroundColor: "black" }} value="ruppee">ruppee</option>
                                       <option style={{ backgroundColor: "black" }} value="dollar">dollar</option>
                                       <option style={{ backgroundColor: "black" }} value="pound">pound</option>
@@ -352,12 +400,25 @@ const Advertise = () => {
 
                                   <div className="column one">
                                     <input
-                                      id="sclt2"
+                                      id=""
                                       placeholder="Ratio"
                                       type="text"
                                       name="ratio"
                                       value={state.ratio}
                                       disabled
+                                      onChange={handleInputs}
+                                      size={40}
+                                      aria-invalid="false"
+                                    />
+                                  </div>
+
+                                  <div className="column one">
+                                    <input
+                                      id=""
+                                      placeholder="Ratio"
+                                      type="text"
+                                      name="calcValue"
+                                      value={state.calcValue}
                                       onChange={handleInputs}
                                       size={40}
                                       aria-invalid="false"
