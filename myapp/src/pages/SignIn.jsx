@@ -28,7 +28,7 @@ const SignIn = () => {
     dispatch(userLogIn(state));
   };
   useEffect(() => {
-    console.log("hello")
+  
     if (loginErrors.length > 0) {
       loginErrors.map((error) => toast.error(error.msg));
     }

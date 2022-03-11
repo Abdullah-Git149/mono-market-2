@@ -36,7 +36,7 @@ const signUpp = async (req, res) => {
     if (check) {
       return res
         .status(400)
-        .json({ status: 0, errors: [{ msg: "Use aother Email or Username" }] });
+        .json({ status: 0, errors: [{ msg: "Use another Email or Username" }] });
     } else {
       const user = await User.create(req.body);
       const token = await user.genarateAuthToken();

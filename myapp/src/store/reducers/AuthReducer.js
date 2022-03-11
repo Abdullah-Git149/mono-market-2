@@ -12,6 +12,8 @@ const initState = {
   loginErrors: [],
   token: "",
   user: "",
+  redirect: false,
+  message: ""
 };
 
 const verifyToken = (token) => {
@@ -52,6 +54,14 @@ const AuthReducer = (state = initState, action) => {
     return { ...state, token: action.payload, user: user };
   } else if (action.type === "LOGOUT_USER") {
     return { ...state, user: "", token: "" };
+  } else if (action.type === "REDIRECT_TRUE") {
+    return { ...state, redirect: true };
+  } else if (action.type === "REDIRECT_FALSE") {
+    return { ...state, redirect: false };
+  } else if (action.type === "SET_MESSAGE") {
+    return { ...state, message: action.payload };
+  } else if (action.type === "REMOVE_MESSAGE") {
+    return { ...state, message: "" };
   } else {
     return state;
   }

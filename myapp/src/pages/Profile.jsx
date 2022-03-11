@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
 const Profile = () => {
   const { user } = useSelector((state) => state.AuthReducer);
+  const { redirect, message } = useSelector((state) => state.PostReducer);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (redirect) {
+      dispatch({ type: "REDIRECT_FALSE" })
+      
+    }
+    if (message) {
+      toast.success(message)
+      dispatch({type:"REMOVE_MESSAGE"})
+    }
+  })
   const logOutUser = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
@@ -27,6 +42,17 @@ const Profile = () => {
       <div className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">
         <div>
           <div id="Wrapper">
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
             <div id="Header_wrapper">
               <header id="Header">
                 <div className="header_placeholder" />
@@ -172,7 +198,7 @@ const Profile = () => {
                           style={{ marginTop: "-160px" }}
                         >
                           <div className="mcb-wrap-inner">
-                          <div
+                            <div
                               style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -183,7 +209,7 @@ const Profile = () => {
                               {/* <h4>Profile Image</h4>
                             
                              <img src={user.user_images} alt="" /> */}
-                            
+
                             </div>
                             <div
                               style={{
@@ -443,7 +469,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <Homefooter/>
+            <Homefooter />
           </div>
           {/* side menu */}
           <div id="Side_slide" className="right dark" data-width={250}>

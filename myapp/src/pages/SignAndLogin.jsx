@@ -45,7 +45,7 @@ const SignAndLogin = (props) => {
       navigate("/signIn");
     }
     console.log("main user", user);
-  }, [registerErrors, user]);
+  }, [registerErrors]);
   const userRegister = async (e) => {
     e.preventDefault();
     // const { user_fullname, user_country, user_contact, user_currency, user_email, user_password, username } = state
@@ -347,31 +347,32 @@ const SignAndLogin = (props) => {
                                         name="user_country"
                                         value={state.user_country}
                                         id=""
+                                        style={{ color: "white" }}
                                         onChange={handleInputs}
-                                        style={{ color: "black" }}
+
                                       >
-                                        <option value="pakistan"> pakistan </option>
-                                        <option value="america">america</option>
-                                        <option value="canada">canada</option>
-                                        <option value="england">england</option>
-                                        <option value="nigeria">nigeria</option>
-                                        <option value="mexico">mexico</option>
+                                        <option style={{ backgroundColor: "black" }} value="pakistan"> pakistan </option>
+                                        <option style={{ backgroundColor: "black" }} value="america">america</option>
+                                        <option style={{ backgroundColor: "black" }} value="canada">canada</option>
+                                        <option style={{ backgroundColor: "black" }} value="england">england</option>
+                                        <option style={{ backgroundColor: "black" }} value="nigeria">nigeria</option>
+                                        <option style={{ backgroundColor: "black" }} value="mexico">mexico</option>
                                       </select>
                                     </div>
                                     <div className="column one">
                                       <select
                                         name="user_currency"
                                         value={state.user_currency}
-                                        style={{ color: "black" }}
+                                        style={{ color: "white" }}
                                         id=""
                                         onChange={handleInputs}
                                       >
-                                        <option value="ruppee">ruppee</option>
-                                        <option value="dollar">dollar</option>
-                                        <option value="pound">pound</option>
-                                        <option value="euro">euro</option>
-                                        <option value="naira">naira</option>
-                                        <option value="mexican peso">mexican peso</option>
+                                        <option style={{ backgroundColor: "black" }} value="ruppee">ruppee</option>
+                                        <option style={{ backgroundColor: "black" }} value="dollar">dollar</option>
+                                        <option style={{ backgroundColor: "black" }} value="pound">pound</option>
+                                        <option style={{ backgroundColor: "black" }} value="euro">euro</option>
+                                        <option style={{ backgroundColor: "black" }} value="naira">naira</option>
+                                        <option style={{ backgroundColor: "black" }} value="mexican peso">mexican peso</option>
 
 
                                       </select>

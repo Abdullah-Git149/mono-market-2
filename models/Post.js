@@ -8,6 +8,11 @@ const postSchema = mongoose.Schema(
             trim: true,
             default: null,
         },
+        calcValue: {
+            type: Number,
+            required: false,
+            default: null,
+        },
         // user_country: {
         //   type: String,
         //   required: false,
@@ -26,7 +31,17 @@ const postSchema = mongoose.Schema(
             default: 0,
             trim: true,
         },
-        created_by: {
+        user_fullname: {
+            type: String,
+            required: false,
+            trim: true,
+        },
+        ratio: {
+            type: String,
+            required: false,
+        },
+
+        userId: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User'

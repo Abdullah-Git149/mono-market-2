@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
 import { useEffect, useState } from "react";
-import { createPost } from "../store/actions/postAction"
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { createPostAction, redirect } from "../store/actions/postAction"
 const Advertise = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.AuthReducer);
+  const { createErrors, redirect } = useSelector((state) => state.PostReducer);
   const { _id, user_fullname } = user
-  console.log(_id, user_fullname);
+
   const [state, setState] = useState({
     amount: 0,
     post_currency: "",
@@ -16,24 +21,39 @@ const Advertise = () => {
     calcValue: 0
   })
 
+  useEffect(() => {
+    if (redirect) {
+      navigate("/profile");
+    }
 
+    const { errors } = createErrors
+    if (createErrors.length !== 0) {
+      errors.map((errr) => toast.error(errr.msg))
+    }
+  }, [createErrors, redirect])
 
   const handleInputs = (e) => {
     if (state.post_currency === "naira") {
       state.ratio = "2.3"
       state.calcValue = state.amount * 2.3
 
-    }else if (state.post_currency === "dollar") {
+    } else if (state.post_currency === "dollar") {
       state.ratio = "2"
       state.calcValue = state.amount * 2
 
-    }else if (state.post_currency === "euro") {
+    } else if (state.post_currency === "euro") {
       state.ratio = "2.5"
       state.calcValue = state.amount * 2.5
 
-    }else if (state.post_currency === "pound") {
+    } else if (state.post_currency === "pound") {
       state.ratio = "2.1"
       state.calcValue = state.amount * 2.1
+    } else if (state.post_currency === "mexico pesa") {
+      state.ratio = "2.4"
+      state.calcValue = state.amount * 2.4
+    } else if (state.post_currency === "ruppee") {
+      state.ratio = "2.6"
+      state.calcValue = state.amount * 2.6
     }
 
     setState({
@@ -80,6 +100,15 @@ const Advertise = () => {
   }
   const createPost = (e) => {
     e.preventDefault()
+    const formData = new FormData()
+    formData.append('amount', state.amount)
+    formData.append('post_currency', state.post_currency)
+    formData.append('ratio', state.ratio)
+    formData.append('calcValue', state.calcValue)
+    formData.append('user_fullname', user_fullname)
+    formData.append('_id', _id)
+    dispatch(createPostAction(formData))
+
     console.log("complete", state)
   }
 
@@ -116,6 +145,17 @@ const Advertise = () => {
       <div className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">
         <div>
           <div id="Wrapper">
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
             <div id="Header_wrapper">
               <header id="Header">
                 <div className="header_placeholder" />
@@ -415,8 +455,9 @@ const Advertise = () => {
                                   <div className="column one">
                                     <input
                                       id=""
-                                      placeholder="Ratio"
+                                      placeholder="Calculatee Amount"
                                       type="text"
+                                      disabled
                                       name="calcValue"
                                       value={state.calcValue}
                                       onChange={handleInputs}

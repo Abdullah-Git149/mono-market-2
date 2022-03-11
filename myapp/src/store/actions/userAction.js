@@ -40,7 +40,8 @@ export const userSave = (state) => {
         }
       );
       dispatch({ type: CLOSE_LOADER });
-      
+      dispatch({ type: "REDIRECT_TRUE" })
+      dispatch({ type: "SET_MESSAGE", payload: "Successfully account created" })
       // localStorage.setItem("mytoken", data.token);
       // dispatch({ type: SET_TOKEN, payload: data.token });
       console.log("db data", data);
@@ -154,7 +155,7 @@ export const userSave = (state) => {
 export const userLogIn = (state) => {
   return async (dispatch) => {
     try {
-     const {data}= await axios
+      const { data } = await axios
         .post("http://localhost:5000/api/signInn", state)
         .then((res) => {
           localStorage.setItem("mytoken", res.data.token);
@@ -165,11 +166,11 @@ export const userLogIn = (state) => {
       console.log("ym", data)
     } catch (error) {
       dispatch({ type: CLOSE_LOADER });
-            dispatch({
-              type: LOGIN_ERROR,
-              payload: error.response.data.errors,
-            });
-            console.log(error.response);
+      dispatch({
+        type: LOGIN_ERROR,
+        payload: error.response.data.errors,
+      });
+      console.log(error.response);
     }
   };
 };
