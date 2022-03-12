@@ -1,11 +1,13 @@
 import axios from "axios"
-const token = localStorage.getItem('mytoken')
+// const token = localStorage.getItem('mytoken')
 export const createPostAction = (formData) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         dispatch({ type: "SET_LOADER" })
+        const { AuthReducer: { token } } = getState()
+        console.log("your data", token);
         try {
             const config = {
-                hearers: {
+                headers: {
                     Authorization: `Bearer ${token}`
                 }
             }
@@ -16,7 +18,7 @@ export const createPostAction = (formData) => {
                 dispatch({ type: "REDIRECT_TRUE" })
                 // dispatch({ type: "REMOVE_ERRORS" })
                 dispatch({ type: "SET_MESSAGE", payload: res.data.msg })
-                
+
             }).catch((error) => {
                 // console.log("mainnnn error", e)
                 dispatch({ type: "CLOSE_LOADER" })
@@ -29,7 +31,30 @@ export const createPostAction = (formData) => {
 
 
         } catch (error) {
-        
+
         }
+    }
+}
+
+export const fetchPosts = (id) => {
+    return async (dispatch, getState) => {
+        const { AuthReducer: { token } } = getState()
+        dispatch({ type: "SET_LOADER" })
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        await axios.get(`http://localhost:5000/api/fetchPosts/${id}`, config).then((res) => {
+            dispatch({ type: "CLOSE_LOADER" })
+            const myPosts = res.data.response
+            dispatch({ type: "SET_POSTS", payload: myPosts })
+            console.log(myPosts)
+        }).catch((err) => {
+
+            dispatch({ type: "CLOSE_LOADER" })
+            console.log(err);
+
+        })
     }
 }

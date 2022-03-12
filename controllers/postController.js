@@ -34,9 +34,18 @@ const addPost = (req, res) => {
                 return res.status(201).json({ msg: "You post is created", post })
             }
         })
-        // res.status(200).json({ data: "working" })
+      
     } catch (error) {
         return res.status(404).json({ errors: error, msg: error.message })
     }
 }
-module.exports = { addPost }
+const fetchPosts = async (req, res) => {
+    const id = req.params.id
+    try {
+        const response = await Post.find({ userId: id })
+        return res.status(200).json({ response: response })
+    } catch (error) {
+
+    }
+}
+module.exports = { addPost, fetchPosts }

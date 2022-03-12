@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { createPostAction, redirect } from "../store/actions/postAction"
+
+
 const Advertise = () => {
 
   const dispatch = useDispatch()
@@ -35,25 +37,25 @@ const Advertise = () => {
   const handleInputs = (e) => {
     if (state.post_currency === "naira") {
       state.ratio = "2.3"
-      state.calcValue = state.amount * 2.3
+      state.calcValue = Math.round(state.amount * 2.3)
 
     } else if (state.post_currency === "dollar") {
       state.ratio = "2"
-      state.calcValue = state.amount * 2
+      state.calcValue = Math.round(state.amount * 2)
 
     } else if (state.post_currency === "euro") {
       state.ratio = "2.5"
-      state.calcValue = state.amount * 2.5
+      state.calcValue = Math.round(state.amount * 2.5)
 
     } else if (state.post_currency === "pound") {
       state.ratio = "2.1"
-      state.calcValue = state.amount * 2.1
+      state.calcValue = Math.round(state.amount * 2.1)
     } else if (state.post_currency === "mexico pesa") {
       state.ratio = "2.4"
-      state.calcValue = state.amount * 2.4
+      state.calcValue = Math.round(state.amount * 2.4)
     } else if (state.post_currency === "ruppee") {
       state.ratio = "2.6"
-      state.calcValue = state.amount * 2.6
+      state.calcValue = Math.round(state.amount * 2.6)
     }
 
     setState({

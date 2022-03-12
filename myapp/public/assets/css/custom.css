@@ -1,0 +1,34 @@
+.posts{
+    display:  flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+/* background-color: aqua; */
+}
+.posts_child{
+    /* border: 2px solid white; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 20px 10px;
+    transition: 0.5s ease;
+    
+}
+.posts_child:hover{
+    box-shadow: 2px 8px 22px -2px #62F2C6;
+
+
+}
+.posts a{
+    text-decoration: none;
+}
+.myicons{
+    padding: 5px 8px;
+    font-size: 20px;
+    margin: 10px 0;
+    transition: 0.4s ease;
+}
+.posts .posts_child:hover .myicons{
+    color: white;
+}

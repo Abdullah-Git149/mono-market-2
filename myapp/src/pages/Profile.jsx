@@ -3,22 +3,26 @@ import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
+import { fetchPosts } from "../store/actions/postAction"
+import { FaEdit, FaTrash } from "react-icons/fa";
 const Profile = () => {
   const { user } = useSelector((state) => state.AuthReducer);
-  const { redirect, message } = useSelector((state) => state.PostReducer);
+  const { redirect, message, loading } = useSelector((state) => state.PostReducer);
+  const { posts } = useSelector((state) => state.FetchPosts)
   const dispatch = useDispatch();
+  const { _id } = user
 
   useEffect(() => {
     if (redirect) {
       dispatch({ type: "REDIRECT_FALSE" })
-      
+
     }
     if (message) {
       toast.success(message)
-      dispatch({type:"REMOVE_MESSAGE"})
+      dispatch({ type: "REMOVE_MESSAGE" })
     }
-  })
+    dispatch(fetchPosts(_id))
+  }, [])
   const logOutUser = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
@@ -329,10 +333,101 @@ const Profile = () => {
                                 </a>
                               </div>
                             </div>
+
+
+
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    {/* Post  */}
+
+
+                    <div
+                      className="section mcb-section"
+                      style={{ paddingTop: "0px", paddingBottom: "20px" }}
+                    >
+                      <div className="section_wrapper mcb-section-inner">
+                        <div className="wrap mcb-wrap one valign-top clearfix">
+                          <div className="mcb-wrap-inner">
+                            <div className="column mcb-column one-second column_column">
+                              {/* // area  */}
+
+                              <div className="posts">
+                                {posts.length > 0 ? posts.map((post) => (
+                                  <>
+                                    <Link to="/">  <div className="posts_child" key={post._id} >
+
+
+                                      <h1>Ad </h1>
+                                      <h6><span>Name:</span> {post.user_fullname}</h6>
+                                      <span>Total Amout: ${post.amount}</span>
+                                      <span> Currency:  {post.post_currency}</span>
+                                      <span>Ratio: {post.ratio}</span>
+                                      <span>Calculated Value: ${post.calcValue}</span>
+                                      <div>
+                                        <FaEdit className="myicons" />
+                                        <FaTrash className="myicons" />
+                                      </div>
+
+
+                                    </div></Link>
+                                  </>
+                                )
+
+                                ) : " You dont have any post"}
+
+                              </div>
+                            </div>
+                            <div className="column mcb-column one-second column_column">
+                              {/* secnd  */}
+                            </div>
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* {posts.length > 0 ? posts.map((post) => {
+                      <>
+                        <div
+                          className="section mcb-section"
+                          style={{ paddingTop: "0px", paddingBottom: "40px" }}
+                        >
+                          <div className="section_wrapper mcb-section-inner">
+                            <div className="wrap mcb-wrap one valign-top clearfix">
+                              <div className="mcb-wrap-inner">
+                                <div className="column mcb-column one-third column_column">
+                                  <div
+                                    className="column_attr clearfix"
+                                    style={{
+                                      backgroundImage:
+                                        'url("assets/images/home_pay_features2.png")',
+                                      backgroundRepeat: "no-repeat",
+                                      backgroundPosition: "left top",
+                                      padding: "5px 0 0 60px",
+                                    }}
+                                  >
+                                    <h5>{post.user_fullname}</h5>
+                                    <p>
+                                      Lorem ipsum dolor sit amet, consectetur adi
+                                      piscing elit, sed do eiusmod tempor inci
+                                      didunt ut labore et dolore magna aliqua. Et
+                                      leo duis ut diam quam nulla porttitor.
+                                    </p>
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    })
+                      : " You dont have any post"} */}
+
                     <div
                       className="section mcb-section"
                       style={{ paddingTop: "0px", paddingBottom: "20px" }}

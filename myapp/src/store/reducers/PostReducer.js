@@ -2,10 +2,11 @@ const initState = {
     loading: false,
     createErrors: [],
     redirect: false,
-    message: ""
+    message: "",
+    posts: []
 }
 
-const PostReducer = (state = initState, action) => {
+export const PostReducer = (state = initState, action) => {
 
     if (action.type === 'SET_LOADER') {
         return { ...state, loading: true }
@@ -31,4 +32,11 @@ const PostReducer = (state = initState, action) => {
     }
 }
 
-export default PostReducer
+export const FetchPosts = (state = initState, action) => {
+    if (action.type === "SET_POSTS") {
+        return { ...state, posts: action.payload }
+    } else {
+        return state
+    }
+
+}
