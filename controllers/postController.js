@@ -34,18 +34,30 @@ const addPost = (req, res) => {
                 return res.status(201).json({ msg: "You post is created", post })
             }
         })
-      
+
     } catch (error) {
         return res.status(404).json({ errors: error, msg: error.message })
     }
 }
+
+
 const fetchPosts = async (req, res) => {
     const id = req.params.id
     try {
         const response = await Post.find({ userId: id })
         return res.status(200).json({ response: response })
     } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message })
+    }
+}
+const fetchSinglePost = async (req, res) => {
+    const id = req.params.id
+    try {
+        const post = await Post.findOne({ _id: id })
+        return res.status(200).json({ status: 1, post })
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message })
 
     }
 }
-module.exports = { addPost, fetchPosts }
+module.exports = { addPost, fetchPosts, fetchSinglePost }

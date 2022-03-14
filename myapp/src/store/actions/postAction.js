@@ -49,12 +49,38 @@ export const fetchPosts = (id) => {
             dispatch({ type: "CLOSE_LOADER" })
             const myPosts = res.data.response
             dispatch({ type: "SET_POSTS", payload: myPosts })
-            console.log(myPosts)
+
         }).catch((err) => {
 
             dispatch({ type: "CLOSE_LOADER" })
             console.log(err);
 
         })
+    }
+}
+
+
+export const fetchPost = (id) => {
+    return async (dispatch, getState) => {
+        const { AuthReducer: { token } } = getState()
+        dispatch({ type: "SET_LOADER" })
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        dispatch({ type: "SET_LOADER" })
+        await axios.get(`http://localhost:5000/api/fetchPost/${id}`, config).then((res) => {
+            dispatch({ type: "CLOSE_LOADER" })
+            const mypost = res.data.post
+            dispatch({ type: "SET_SINGLE_POST", payload: mypost })
+            dispatch({ type: "POST_REQUEST" })
+
+            console.log(res.data.post)
+        }).catch((err) => {
+            dispatch({ type: "CLOSE_LOADER" })
+            console.log(err);
+        })
+
     }
 }

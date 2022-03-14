@@ -32,3 +32,7 @@
 .posts .posts_child:hover .myicons{
     color: white;
 }
+.addional{
+    display: flex;
+    flex-direction: column;
+}

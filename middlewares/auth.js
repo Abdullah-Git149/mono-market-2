@@ -4,7 +4,7 @@ const auth =(req,res,next)=>{
   const token = authHeader.split("Bearer ")[1]
   try {
   jwt.verify(token , process.env.jwt)
-  next()
+  next() 
 } catch (error) {
   return res.status(401).json({errors:[{msg:error.message}]})
 }

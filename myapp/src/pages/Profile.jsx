@@ -357,22 +357,23 @@ const Profile = () => {
                               <div className="posts">
                                 {posts.length > 0 ? posts.map((post) => (
                                   <>
-                                    <Link to="/">  <div className="posts_child" key={post._id} >
-
-
-                                      <h1>Ad </h1>
-                                      <h6><span>Name:</span> {post.user_fullname}</h6>
-                                      <span>Total Amout: ${post.amount}</span>
-                                      <span> Currency:  {post.post_currency}</span>
-                                      <span>Ratio: {post.ratio}</span>
-                                      <span>Calculated Value: ${post.calcValue}</span>
+                                    <div className="posts_child" key={post._id} >
+                                      <Link to="/">
+                                        <div className="addional">
+                                          <h1>Ad </h1>
+                                          <h6><span>Name:</span> {post.user_fullname}</h6>
+                                          <span>Total Amout: ${post.amount}</span>
+                                          <span> Currency:  {post.post_currency}</span>
+                                          <span>Ratio: {post.ratio}</span>
+                                          <span>Calculated Value: ${post.calcValue}</span>
+                                        </div></Link>
                                       <div>
-                                        <FaEdit className="myicons" />
+                                        <Link to={`/edit/${post._id}`}>  <FaEdit className="myicons" /></Link>
                                         <FaTrash className="myicons" />
                                       </div>
 
 
-                                    </div></Link>
+                                    </div>
                                   </>
                                 )
 

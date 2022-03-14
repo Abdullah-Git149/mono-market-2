@@ -3,7 +3,9 @@ const initState = {
     createErrors: [],
     redirect: false,
     message: "",
-    posts: []
+    posts: [],
+    post: {},
+    postStatus: false
 }
 
 export const PostReducer = (state = initState, action) => {
@@ -35,6 +37,19 @@ export const PostReducer = (state = initState, action) => {
 export const FetchPosts = (state = initState, action) => {
     if (action.type === "SET_POSTS") {
         return { ...state, posts: action.payload }
+    } else {
+        return state
+    }
+
+}
+
+export const FetchPost = (state = initState, action) => {
+    if (action.type === "SET_SINGLE_POST") {
+        return { ...state, post: action.payload }
+    } else if (action.type === "POST_REQUEST") {
+        return { ...state, postStatus: true }
+    } else if (action.type === "POST_RESET") {
+        return { ...state, postStatus: false }
     } else {
         return state
     }

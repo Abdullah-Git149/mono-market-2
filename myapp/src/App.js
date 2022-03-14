@@ -12,6 +12,7 @@ import SignIn from "./pages/SignIn";
 import PrivateRoute from "./private/PrivateRoute";
 import Store from "./store";
 import Advertise from "./pages/Advertise";
+import Edit from "./pages/Edit";
 function App() {
   return (
     <div>
@@ -36,6 +37,7 @@ function App() {
             <Route path="/signUp" element={<SignAndLogin />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/advertise" element={<Advertise />} />
+            <Route path="/edit/:id" element={<Edit/>}/>
           </Routes>
         </BrowserRouter>
       </Provider>
