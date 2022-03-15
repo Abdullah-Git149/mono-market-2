@@ -21,6 +21,8 @@ const Profile = () => {
       toast.success(message)
       dispatch({ type: "REMOVE_MESSAGE" })
     }
+
+    
     dispatch(fetchPosts(_id))
   }, [])
   const logOutUser = () => {

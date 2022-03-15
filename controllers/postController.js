@@ -1,5 +1,6 @@
 const Post = require("../models/Post")
 const formadible = require("formidable")
+const { body, validationResult } = require("express-validator")
 const addPost = (req, res) => {
     try {
         const form = formadible({ multiples: true })
@@ -60,4 +61,34 @@ const fetchSinglePost = async (req, res) => {
 
     }
 }
-module.exports = { addPost, fetchPosts, fetchSinglePost }
+
+
+const postValidator = [
+    body("amount").not().isEmpty().withMessage("Amount is required"),
+    body("post_currency").not().isEmpty().withMessage("Currency is required"),
+];
+const updatePost = async (req, res) => {
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
+    } else {
+        try {
+            const response = await Post.findByIdAndUpdate(req.body.id, {
+                amount: req.body.amount,
+                post_currency: req.body.post_currency,
+                // ratio: req.body.ratio,
+                // calcValue: req.body.calcValue
+            })
+            return res.status(200).json({ msg: "You post has been updated", response })
+            console.log(req.body)
+        } catch (error) {
+            return res.status(500).json({ errors: error, msg: error.message })
+
+        }
+    }
+
+    // res.send("hello")
+
+}
+module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator }

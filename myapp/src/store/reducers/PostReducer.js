@@ -5,7 +5,8 @@ const initState = {
     message: "",
     posts: [],
     post: {},
-    postStatus: false
+    postStatus: false,
+    postEditErrors: []
 }
 
 export const PostReducer = (state = initState, action) => {
@@ -50,6 +51,17 @@ export const FetchPost = (state = initState, action) => {
         return { ...state, postStatus: true }
     } else if (action.type === "POST_RESET") {
         return { ...state, postStatus: false }
+    } else {
+        return state
+    }
+
+}
+
+export const UpdatePost = (state = initState, action) => {
+    if (action.type === "SET_EDIT_ERROR") {
+        return { ...state, postEditErrors: action.payload }
+    } else if (action.type === "RESET_EDIT_ERRORS") {
+        return { ...state, postEditErrors: [] }
     } else {
         return state
     }

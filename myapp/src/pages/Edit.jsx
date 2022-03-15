@@ -3,12 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { fetchPost } from "../store/actions/postAction";
+import { fetchPost, updateAction } from "../store/actions/postAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
 const Edit = () => {
 
     const { id } = useParams()
+    const navigate = useNavigate();
+
     const { user } = useSelector((state) => state.AuthReducer);
     const { post, postStatus } = useSelector((state) => state.FetchPost);
+    const { postEditErrors } = useSelector((state) => state.UpdatePost);
+    const { redirect, message } = useSelector((state) => state.PostReducer);
+    console.log("edit error", postEditErrors)
     const dispatch = useDispatch();
     console.log("data ", post);
     const logOutUser = () => {
@@ -34,6 +43,86 @@ const Edit = () => {
         ratio: "",
         calcValue: 0
     })
+    const updatePost = (e) => {
+        e.preventDefault()
+        dispatch(updateAction({
+            amount: state.amount,
+            post_currency: state.post_currency,
+            id: post._id
+
+        }))
+    }
+    const handleInputs = (e) => {
+        // if (state.post_currency === "naira") {
+        //     state.ratio = "2.3"
+        //     state.calcValue = Math.round(post.amount * 2.3)
+
+        // } else if (state.post_currency === "dollar") {
+        //     state.ratio = "2"
+        //     state.calcValue = Math.round(post.amount * 2)
+
+        // } else if (state.post_currency === "euro") {
+        //     state.ratio = "2.5"
+        //     state.calcValue = Math.round(post.amount * 2.5)
+
+        // } else if (state.post_currency === "pound") {
+        //     state.ratio = "2.1"
+        //     state.calcValue = Math.round(post.amount * 2.1)
+        // } else if (state.post_currency === "mexico pesa") {
+        //     state.ratio = "2.4"
+        //     state.calcValue = Math.round(post.amount * 2.4)
+        // } else if (state.post_currency === "ruppee") {
+        //     state.ratio = "2.6"
+        //     state.calcValue = Math.round(post.amount * 2.6)
+        // }
+
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+        console.log("my state", state)
+
+        if (state.post_currency === "naira") {
+            setState({
+                ...state,
+                ratio: "2.3",
+                calcValue: state.amount * 2.3,
+                [e.target.name]: e.target.value,
+
+            })
+
+        } else if (state.post_currency === "dollar") {
+            setState({
+                ...state,
+                ratio: "2",
+                calcValue: state.amount * 2,
+                [e.target.name]: e.target.value,
+
+            })
+        } else if (state.post_currency === "euro") {
+            setState({
+                ...state,
+                ratio: "2.5",
+                calcValue: state.amount * 2.5,
+                [e.target.name]: e.target.value,
+
+            })
+        } else if (state.post_currency === "pound") {
+            setState({
+                ...state,
+                ratio: "2.1",
+                calcValue: state.amount * 2.1,
+                [e.target.name]: e.target.value,
+
+            })
+        }
+
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+        console.log("my state", state)
+    }
     useEffect(() => {
         if (postStatus) {
             setState({
@@ -47,80 +136,25 @@ const Edit = () => {
 
             dispatch(fetchPost(id))
         }
-    }, [])
-    const handleInputs = (e) => {
-        if (state.post_currency === "naira") {
-            state.ratio = "2.3"
-            state.calcValue = Math.round(state.amount * 2.3)
-
-        } else if (state.post_currency === "dollar") {
-            state.ratio = "2"
-            state.calcValue = Math.round(state.amount * 2)
-
-        } else if (state.post_currency === "euro") {
-            state.ratio = "2.5"
-            state.calcValue = Math.round(state.amount * 2.5)
-
-        } else if (state.post_currency === "pound") {
-            state.ratio = "2.1"
-            state.calcValue = Math.round(state.amount * 2.1)
-        } else if (state.post_currency === "mexico pesa") {
-            state.ratio = "2.4"
-            state.calcValue = Math.round(state.amount * 2.4)
-        } else if (state.post_currency === "ruppee") {
-            state.ratio = "2.6"
-            state.calcValue = Math.round(state.amount * 2.6)
+    }, [post])
+    useEffect(() => {
+        if (postEditErrors !== 0) {
+            postEditErrors.map((error) => (
+                toast.error(error.msg)
+            ))
         }
-
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
-        console.log("my state", state)
-
-        // if (state.post_currency === "naira") {
-        //   setState({
-        //     ...state,
-        //     ratio: "2.3",
-        //     calcValue: state.amount * 2.3,
-        //     [e.target.name]: e.target.value,
-
-        //   })
-
-        // } else if (state.post_currency === "dollar") {
-        //   setState({
-        //     ...state,
-        //     ratio: "2",
-        //     calcValue: state.amount * 2,
-        //     [e.target.name]: e.target.value,
-
-        //   })
-        // } else if (state.post_currency === "euro") {
-        //   setState({
-        //     ...state,
-        //     ratio: "2.5",
-        //     calcValue: state.amount * 2.5,
-        //     [e.target.name]: e.target.value,
-
-        //   })
-        // } else if (state.post_currency === "pound") {
-        //   setState({
-        //     ...state,
-        //     ratio: "2.1",
-        //     calcValue: state.amount * 2.1,
-        //     [e.target.name]: e.target.value,
-
-        //   })
-        // }
-
-
-    }
-
-
+        dispatch({ type: "RESET_EDIT_ERRORS" })
+    }, [])
+    useEffect(() => {
+        if (redirect) {
+            navigate("/profile");
+        }
+    }, [redirect])
     return (
         <>
             <div className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">
                 <div id="Wrapper">
+                    <ToastContainer />
                     <div id="Header_wrapper">
                         <header id="Header">
                             <div className="header_placeholder" />
@@ -267,7 +301,7 @@ const Edit = () => {
                                                     <div className="column mcb-column one-second column_column">
                                                         <div id="contactWrapper">
                                                             <form
-
+                                                                onSubmit={updatePost}
                                                                 id="contactform"
                                                                 method="POST"
                                                             >
