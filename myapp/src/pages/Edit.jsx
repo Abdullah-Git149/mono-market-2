@@ -53,68 +53,27 @@ const Edit = () => {
         }))
     }
     const handleInputs = (e) => {
-        // if (state.post_currency === "naira") {
-        //     state.ratio = "2.3"
-        //     state.calcValue = Math.round(post.amount * 2.3)
-
-        // } else if (state.post_currency === "dollar") {
-        //     state.ratio = "2"
-        //     state.calcValue = Math.round(post.amount * 2)
-
-        // } else if (state.post_currency === "euro") {
-        //     state.ratio = "2.5"
-        //     state.calcValue = Math.round(post.amount * 2.5)
-
-        // } else if (state.post_currency === "pound") {
-        //     state.ratio = "2.1"
-        //     state.calcValue = Math.round(post.amount * 2.1)
-        // } else if (state.post_currency === "mexico pesa") {
-        //     state.ratio = "2.4"
-        //     state.calcValue = Math.round(post.amount * 2.4)
-        // } else if (state.post_currency === "ruppee") {
-        //     state.ratio = "2.6"
-        //     state.calcValue = Math.round(post.amount * 2.6)
-        // }
-
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
-        console.log("my state", state)
-
         if (state.post_currency === "naira") {
-            setState({
-                ...state,
-                ratio: "2.3",
-                calcValue: state.amount * 2.3,
-                [e.target.name]: e.target.value,
-
-            })
+            state.ratio = "2.3"
+            state.calcValue = Math.round(post.amount * 2.3)
 
         } else if (state.post_currency === "dollar") {
-            setState({
-                ...state,
-                ratio: "2",
-                calcValue: state.amount * 2,
-                [e.target.name]: e.target.value,
+            state.ratio = "2"
+            state.calcValue = Math.round(post.amount * 2)
 
-            })
         } else if (state.post_currency === "euro") {
-            setState({
-                ...state,
-                ratio: "2.5",
-                calcValue: state.amount * 2.5,
-                [e.target.name]: e.target.value,
+            state.ratio = "2.5"
+            state.calcValue = Math.round(post.amount * 2.5)
 
-            })
         } else if (state.post_currency === "pound") {
-            setState({
-                ...state,
-                ratio: "2.1",
-                calcValue: state.amount * 2.1,
-                [e.target.name]: e.target.value,
-
-            })
+            state.ratio = "2.1"
+            state.calcValue = Math.round(post.amount * 2.1)
+        } else if (state.post_currency === "mexico pesa") {
+            state.ratio = "2.4"
+            state.calcValue = Math.round(post.amount * 2.4)
+        } else if (state.post_currency === "ruppee") {
+            state.ratio = "2.6"
+            state.calcValue = Math.round(post.amount * 2.6)
         }
 
         setState({
@@ -122,6 +81,47 @@ const Edit = () => {
             [e.target.name]: e.target.value
         })
         console.log("my state", state)
+
+        // if (state.post_currency === "naira") {
+        //     setState({
+        //         ...state,
+        //         ratio: "2.3",
+        //         calcValue: state.amount * 2.3,
+        //         [e.target.name]: e.target.value,
+
+        //     })
+
+        // } else if (state.post_currency === "dollar") {
+        //     setState({
+        //         ...state,
+        //         ratio: "2",
+        //         calcValue: state.amount * 2,
+        //         [e.target.name]: e.target.value,
+
+        //     })
+        // } else if (state.post_currency === "euro") {
+        //     setState({
+        //         ...state,
+        //         ratio: "2.5",
+        //         calcValue: state.amount * 2.5,
+        //         [e.target.name]: e.target.value,
+
+        //     })
+        // } else if (state.post_currency === "pound") {
+        //     setState({
+        //         ...state,
+        //         ratio: "2.1",
+        //         calcValue: state.amount * 2.1,
+        //         [e.target.name]: e.target.value,
+
+        //     })
+        // }
+
+        // setState({
+        //     ...state,
+        //     [e.target.name]: e.target.value
+        // })
+        // console.log("my state", state)
     }
     useEffect(() => {
         if (postStatus) {

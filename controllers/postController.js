@@ -91,4 +91,19 @@ const updatePost = async (req, res) => {
     // res.send("hello")
 
 }
-module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator }
+
+const deletePost = async (req, res) => {
+    try {
+        const id = req.params.id
+        const response = await Post.findByIdAndRemove(id)
+        return res.status(200).json({ msg: "Post deleted sucessfully" })
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message })
+
+    }
+}
+
+const homePosts = (req,res)=>{
+
+}
+module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator, deletePost  ,homePosts}

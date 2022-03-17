@@ -5,13 +5,17 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { fetchPosts } from "../store/actions/postAction"
 import { FaEdit, FaTrash } from "react-icons/fa";
+import moment from "moment"
+import axios from "axios"
 const Profile = () => {
-  const { user } = useSelector((state) => state.AuthReducer);
+  const { user, token } = useSelector((state) => state.AuthReducer);
+
   const { redirect, message, loading } = useSelector((state) => state.PostReducer);
   const { posts } = useSelector((state) => state.FetchPosts)
+  console.log("mypost", posts);
   const dispatch = useDispatch();
   const { _id } = user
-
+  console.log(user);
   useEffect(() => {
     if (redirect) {
       dispatch({ type: "REDIRECT_FALSE" })
@@ -22,14 +26,46 @@ const Profile = () => {
       dispatch({ type: "REMOVE_MESSAGE" })
     }
 
-    
+    // FETCHING ALL THE POSTS
     dispatch(fetchPosts(_id))
-  }, [])
+  }, [message])
   const logOutUser = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
   };
+  const deletePost = (postId) => {
+    const confrim = window.confirm("Are you sure to delete the post ?")
+    if (confrim) {
+      // try {
+      //   dispatch({ type: "SET_LOADER" })
 
+      // } catch (error) {
+      //   dispatch({ type: "SET_LOADER" })
+      //   console.log(error)
+
+      // }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      dispatch({ type: "SET_LOADER" })
+      axios.get(`http://localhost:5000/api/deletePost/${postId}`, config).then((res) => {
+        console.log(res)
+        // dispatch(fetchPosts(_id)) 
+
+        dispatch({ type: "SET_MESSAGE", payload: res.data.msg })
+
+
+
+        dispatch({ type: "CLOSE_LOADER" })
+      }).catch((err) => {
+        dispatch({ type: "CLOSE_LOADER" })
+        console.log(err);
+      })
+
+    }
+  }
   const Links = user ? (
     <li>
       <Link to="/">
@@ -371,9 +407,9 @@ const Profile = () => {
                                         </div></Link>
                                       <div>
                                         <Link to={`/edit/${post._id}`}>  <FaEdit className="myicons" /></Link>
-                                        <FaTrash className="myicons" />
+                                        <FaTrash style={{ cursor: "pointer" }} onClick={() => deletePost(post._id)} className="myicons" />
                                       </div>
-
+                                      <span>Published {moment(post.updatedAt).fromNow()}</span>
 
                                     </div>
                                   </>
