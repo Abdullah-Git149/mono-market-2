@@ -10,6 +10,6 @@ router.get("/api/fetchPosts/:id", auth, fetchPosts)
 router.get("/api/fetchPost/:id", fetchSinglePost)
 router.get("/api/deletePost/:id", auth, deletePost)
 router.post("/api/updatePost", auth, postValidator, updatePost)
-router.post("/api/homePosts", homePosts)
+router.get("/api/homePosts/:page", homePosts)
 
 module.exports = router

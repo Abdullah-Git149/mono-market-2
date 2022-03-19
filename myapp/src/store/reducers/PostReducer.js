@@ -6,7 +6,10 @@ const initState = {
     posts: [],
     post: {},
     postStatus: false,
-    postEditErrors: []
+    postEditErrors: [],
+    allPosts: [],
+    count: 0,
+    perPage: 0
 }
 
 export const PostReducer = (state = initState, action) => {
@@ -66,4 +69,11 @@ export const UpdatePost = (state = initState, action) => {
         return state
     }
 
+}
+export const AllPosts = (state = initState, action) => {
+    if (action.type === "SHOW_ALLPOSTS") {
+        return { ...state, allPosts: action.payload.posts, count: action.payload.count, perPage: action.payload.perPage }
+    } else {
+        return state
+    }
 }

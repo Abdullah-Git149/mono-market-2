@@ -1,12 +1,23 @@
 import Homefooter from "../components/Homefooter";
 import Navbar from "../components/Nabvar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
+import { allPostsAction } from "../store/actions/postAction"
+import { useEffect } from "react";
+import moment from "moment";
+import Pagination from "./Pagination";
 const Home = () => {
   const { user } = useSelector((state) => state.AuthReducer);
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch()
+  let { page } = useParams()
+  const { allPosts, count, perPage } = useSelector((state) => state.AllPosts)
+  const { loading } = useSelector((state) => state.PostReducer)
+  if (page === undefined) {
+    page = 1
+  }
+  console.log(",y", allPosts);
+  console.log(",y", perPage);
+  console.log(",y", count);
   const logOutUser = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
@@ -24,6 +35,9 @@ const Home = () => {
       </Link>
     </li>
   );
+  useEffect(() => {
+    dispatch(allPostsAction(page))
+  }, [page])
   return (
     <>
       <div className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">
@@ -46,28 +60,28 @@ const Home = () => {
                         >
                           <img
                             className="logo-main scale-with-grid"
-                            src="assets/images/pay.png"
+                            src="/assets/images/pay.png"
                             data-retina="assets/images/retina-pay.png"
                             data-height={75}
                             alt="pay"
                           />
                           <img
                             className="logo-sticky scale-with-grid"
-                            src="assets/images/pay.png"
+                            src="/assets/images/pay.png"
                             data-retina="assets/images/retina-pay.png"
                             data-height={75}
                             alt="pay"
                           />
                           <img
                             className="logo-mobile scale-with-grid"
-                            src="assets/images/pay.png"
+                            src="/assets/images/pay.png"
                             data-retina="assets/images/retina-pay.png"
                             data-height={75}
                             alt="pay"
                           />
                           <img
                             className="logo-mobile-sticky scale-with-grid"
-                            src="assets/images/pay.png"
+                            src="/assets/images/pay.png"
                             data-retina="assets/images/retina-pay.png"
                             data-height={75}
                             alt="pay"
@@ -202,7 +216,7 @@ const Home = () => {
                               <div className="image_wrapper">
                                 <img
                                   className="scale-with-grid"
-                                  src="assets/images/home_pay_pic1.png"
+                                  src="/assets/images/home_pay_pic1.png"
                                 />
                               </div>
                             </div>
@@ -275,129 +289,21 @@ const Home = () => {
                         className="wrap mcb-wrap two-third valign-top clearfix"
                         style={{ padding: "0 0 0 5%" }}
                       >
+
                         <div className="mcb-wrap-inner">
-                          <div className="column mcb-column one-third column_column">
-                            <div
-                              className="column_attr clearfix"
-                              style={{
-                                backgroundImage:
-                                  'url("content/pay/images/home_pay_pic2.png")',
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "left top",
-                                padding: "0 0 0 80px",
-                              }}
-                            >
-                              <h6
-                                className="themecolor"
-                                style={{ marginBottom: "2px" }}
-                              >
-                                01 —
-                              </h6>
-                              <h5>Admin panel</h5>
-                            </div>
-                          </div>
-                          <div className="column mcb-column one-third column_column">
-                            <div
-                              className="column_attr clearfix"
-                              style={{
-                                backgroundImage:
-                                  'url("assets/images/home_pay_pic3.png")',
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "left top",
-                                padding: "0 0 0 80px",
-                              }}
-                            >
-                              <h6
-                                className="themecolor"
-                                style={{ marginBottom: "2px" }}
-                              >
-                                02 —
-                              </h6>
-                              <h5>Safety</h5>
-                            </div>
-                          </div>
-                          <div className="column mcb-column one-third column_column">
-                            <div
-                              className="column_attr clearfix"
-                              style={{
-                                backgroundImage:
-                                  'url("assets/images/home_pay_pic4.png")',
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "left top",
-                                padding: "0 0 0 80px",
-                              }}
-                            >
-                              <h6
-                                className="themecolor"
-                                style={{ marginBottom: "2px" }}
-                              >
-                                03 —
-                              </h6>
-                              <h5>Statistics</h5>
-                            </div>
-                          </div>
-                          <div className="column mcb-column one column_divider ">
-                            <hr className="no_line" />
-                          </div>
-                          <div className="column mcb-column one-third column_column">
-                            <div
-                              className="column_attr clearfix"
-                              style={{
-                                backgroundImage:
-                                  'url("assets/images/home_pay_pic5.png")',
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "left top",
-                                padding: "0 0 0 80px",
-                              }}
-                            >
-                              <h6
-                                className="themecolor"
-                                style={{ marginBottom: "2px" }}
-                              >
-                                04 —
-                              </h6>
-                              <h5>Paying</h5>
-                            </div>
-                          </div>
-                          <div className="column mcb-column one-third column_column">
-                            <div
-                              className="column_attr clearfix"
-                              style={{
-                                backgroundImage:
-                                  'url("assets/images/home_pay_pic6.png")',
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "left top",
-                                padding: "0 0 0 80px",
-                              }}
-                            >
-                              <h6
-                                className="themecolor"
-                                style={{ marginBottom: "2px" }}
-                              >
-                                05 —
-                              </h6>
-                              <h5>Flexible</h5>
-                            </div>
-                          </div>
-                          <div className="column mcb-column one-third column_column">
-                            <div
-                              className="column_attr clearfix"
-                              style={{
-                                backgroundImage:
-                                  'url("assets/images/home_pay_pic7.png")',
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "left top",
-                                padding: "0 0 0 80px",
-                              }}
-                            >
-                              <h6
-                                className="themecolor"
-                                style={{ marginBottom: "2px" }}
-                              >
-                                06 —
-                              </h6>
-                              <h5>Areas</h5>
-                            </div>
+                          <div className="homerow">
+
+                            {!loading ? allPosts.length > 0 ? allPosts.map((post, index) => (
+                              <div key={index} className="Home__inner">
+                                <span className="avatar">{post.user_fullname[0]} </span>
+                                <span>Name: {post.user_fullname}</span>
+                                <span>Amount: {post.amount}</span>
+                                <span>Currency: {post.post_currency}</span>
+                                <span>Published: {moment(post.updatedAt).format("MMM Do YY")}</span>
+                              </div>
+
+                            )) : "No Post Available" : " ....."}
+                            <Pagination page={page} count={count} perPage={perPage} />
                           </div>
                         </div>
                       </div>
@@ -422,7 +328,7 @@ const Home = () => {
                                     <blockquote>
                                       <img
                                         className="alignnone size-full wp-image-33"
-                                        src="assets/images/home_pay_pic8.png"
+                                        src="/assets/images/home_pay_pic8.png"
                                       />
                                       Lorem ipsum dolor sit amet enim. Etiam
                                       ullamcorper. Suspendisse a pellentesque
@@ -454,7 +360,7 @@ const Home = () => {
                                     <blockquote>
                                       <img
                                         className="alignnone size-full wp-image-33"
-                                        src="assets/images/home_pay_pic9.png"
+                                        src="/assets/images/home_pay_pic9.png"
                                       />
                                       Pellentesque facilisis. Nulla imperdiet
                                       sit amet magna. Vestibulum dapibus, mauris
@@ -487,7 +393,7 @@ const Home = () => {
                                     <blockquote>
                                       <img
                                         className="alignnone size-full wp-image-33"
-                                        src="assets/images/home_pay_pic10.png"
+                                        src="/assets/images/home_pay_pic10.png"
                                       />
                                       Lorem ipsum dolor sit amet enim. Etiam
                                       ullamcorper. Suspendisse a pellentesque
@@ -510,7 +416,7 @@ const Home = () => {
                                     <span />
                                   </div>
                                   <div className="author">
-                                    <h5>aaa</h5>
+
                                     <span className="company" />
                                   </div>
                                 </li>
@@ -538,7 +444,7 @@ const Home = () => {
                                 <li>
                                   <div className="client_wrapper">
                                     <img
-                                      src="assets/images/home_pay_client1-145x75.png"
+                                      src="/assets/images/home_pay_client1-145x75.png"
                                       className="scale-with-grid wp-post-image"
                                       alt=""
                                     />
@@ -547,7 +453,7 @@ const Home = () => {
                                 <li>
                                   <div className="client_wrapper">
                                     <img
-                                      src="assets/images/home_pay_client2-145x75.png"
+                                      src="/assets/images/home_pay_client2-145x75.png"
                                       className="scale-with-grid wp-post-image"
                                       alt=""
                                     />
@@ -556,7 +462,7 @@ const Home = () => {
                                 <li>
                                   <div className="client_wrapper">
                                     <img
-                                      src="assets/images/home_pay_client3-145x75.png"
+                                      src="/assets/images/home_pay_client3-145x75.png"
                                       className="scale-with-grid wp-post-image"
                                       alt=""
                                     />
@@ -565,7 +471,7 @@ const Home = () => {
                                 <li>
                                   <div className="client_wrapper">
                                     <img
-                                      src="assets/images/home_pay_client4-145x75.png"
+                                      src="/assets/images/home_pay_client4-145x75.png"
                                       className="scale-with-grid wp-post-image"
                                       alt=""
                                     />
@@ -574,7 +480,7 @@ const Home = () => {
                                 <li>
                                   <div className="client_wrapper">
                                     <img
-                                      src="assets/images/home_pay_client5-145x75.png"
+                                      src="/assets/images/home_pay_client5-145x75.png"
                                       className="scale-with-grid wp-post-image"
                                       alt=""
                                     />
@@ -583,7 +489,7 @@ const Home = () => {
                                 <li>
                                   <div className="client_wrapper">
                                     <img
-                                      src="assets/images/home_pay_client6-145x75.png"
+                                      src="/assets/images/home_pay_client6-145x75.png"
                                       className="scale-with-grid wp-post-image"
                                       alt=""
                                     />

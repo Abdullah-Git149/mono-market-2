@@ -110,3 +110,21 @@ export const updateAction = (editData) => {
         })
     }
 }
+
+export const allPostsAction = (page) => {
+    return async (dispatch, getState) => {
+        dispatch({ type: "SET_LOADER" })
+        await axios.get(`http://localhost:5000/api/homePosts/${page}`).then((res) => {
+            console.log(res.data);
+            let count = res.data.count
+            let perPage = res.data.perPage
+            let posts = res.data.posts
+            dispatch({ type: "CLOSE_LOADER" })
+            dispatch({ type: "SHOW_ALLPOSTS", payload: { count, perPage, posts } })
+
+        }).catch((err) => {
+            dispatch({ type: "CLOSE_LOADER" })
+            console.log(err)
+        })
+    }
+}

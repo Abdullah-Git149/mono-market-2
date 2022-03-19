@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {Provider} from "react-redux"
+import { Provider } from "react-redux"
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Features from "./pages/Features";
@@ -20,6 +20,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home/:page" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/features" element={<Features />} />
             <Route path="/pricingList" element={<PriceListing />} />
@@ -32,12 +33,12 @@ function App() {
               }
             /> */}
 
-            <Route path="/profile"element={<Profile />}/>
+            <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/signUp" element={<SignAndLogin />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/advertise" element={<Advertise />} />
-            <Route path="/edit/:id" element={<Edit/>}/>
+            <Route path="/edit/:id" element={<Edit />} />
           </Routes>
         </BrowserRouter>
       </Provider>

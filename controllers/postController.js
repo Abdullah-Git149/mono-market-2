@@ -103,7 +103,18 @@ const deletePost = async (req, res) => {
     }
 }
 
-const homePosts = (req,res)=>{
+const homePosts = async (req, res) => {
+    try {
+        const page = req.params.page
+        perPage = 4
+        const skip = (page - 1) * perPage
 
+        const posts = await Post.find({}).skip(skip).limit(perPage).sort({ updatedAt: -1 })
+        const count = await Post.find({}).countDocuments()
+        return res.status(200).json({ status: 1, posts, count, perPage })
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message })
+
+    }
 }
-module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator, deletePost  ,homePosts}
+module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator, deletePost, homePosts }
