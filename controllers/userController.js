@@ -29,6 +29,7 @@ const signUpp = async (req, res) => {
   }
 
   try {
+    
     const check = await User.findOne({
       username: req.body.username,
       email: req.body.email,

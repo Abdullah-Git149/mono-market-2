@@ -15,9 +15,9 @@ const Home = () => {
   if (page === undefined) {
     page = 1
   }
-  console.log(",y", allPosts);
-  console.log(",y", perPage);
-  console.log(",y", count);
+  // console.log(",y", allPosts);
+  // console.log(",y", perPage);
+  // console.log(",y", count);
   const logOutUser = () => {
     localStorage.removeItem("mytoken");
     dispatch({ type: "LOGOUT_USER" });
@@ -293,13 +293,15 @@ const Home = () => {
                         <div className="mcb-wrap-inner">
                           <div className="homerow">
 
-                            {!loading ? allPosts.length > 0 ? allPosts.map((post, index) => (
-                              <div key={index} className="Home__inner">
-                                <span className="avatar">{post.user_fullname[0]} </span>
-                                <span>Name: {post.user_fullname}</span>
-                                <span>Amount: {post.amount}</span>
-                                <span>Currency: {post.post_currency}</span>
-                                <span>Published: {moment(post.updatedAt).format("MMM Do YY")}</span>
+                            {!loading ? allPosts.length > 0 ? allPosts.map((post) => (
+                              <div key={post._id} >
+                                <Link to={`/detail/${post._id}`} className="Home__inner">
+                                  <span className="avatar">{post.user_fullname[0]} </span>
+                                  <span>Name: {post.user_fullname}</span>
+                                  <span>Amount: {post.amount}</span>
+                                  <span>Currency: {post.post_currency}</span>
+                                  <span>Published: {moment(post.updatedAt).format("MMM Do YY")}</span>
+                                </Link>
                               </div>
 
                             )) : "No Post Available" : " ....."}

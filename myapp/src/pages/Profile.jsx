@@ -395,8 +395,8 @@ const Profile = () => {
                               <div className="posts">
                                 {posts.length > 0 ? posts.map((post) => (
                                   <>
-                                    <div className="posts_child" key={post._id} >
-                                      <Link to="/">
+                                    <div key={post._id} className="posts_child"  >
+                                      <Link to={`/detail/${post._id}`}>
                                         <div className="addional">
                                           <h1>Ad </h1>
                                           <h6><span>Name:</span> {post.user_fullname}</h6>

@@ -128,3 +128,18 @@ export const allPostsAction = (page) => {
         })
     }
 }
+export const postDetailAction = (id) => {
+    return async (dispatch, getState) => {
+        dispatch({ type: "SET_LOADER" })
+        axios.get(`http://localhost:5000/api/details/${id}`).then((res) => {
+            dispatch({ type: "CLOSE_LOADER" })
+            console.log(res)
+            const postDetail = res.data.post
+            dispatch({ type: "SET_DETAIL", payload: postDetail })
+        }).catch((err) => {
+            dispatch({ type: "CLOSE_LOADER" })
+            console.log(err)
+
+        })
+    }
+}

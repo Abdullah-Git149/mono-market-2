@@ -117,4 +117,15 @@ const homePosts = async (req, res) => {
 
     }
 }
-module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator, deletePost, homePosts }
+
+const postDetails = async (req, res) => {
+    try {
+        const id = req.params.id
+        const post = await Post.findOne({ _id: id })
+        return res.status(200).json({ status: 1, post })
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message })
+
+    }
+}
+module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator, deletePost, postDetails, homePosts }

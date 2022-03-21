@@ -13,6 +13,7 @@ import PrivateRoute from "./private/PrivateRoute";
 import Store from "./store";
 import Advertise from "./pages/Advertise";
 import Edit from "./pages/Edit";
+import Details from "./pages/Details";
 function App() {
   return (
     <div>
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home/:page" element={<Home />} />
+            <Route path="/detail/:id" element={<Details />} />
             <Route path="/about" element={<About />} />
             <Route path="/features" element={<Features />} />
             <Route path="/pricingList" element={<PriceListing />} />

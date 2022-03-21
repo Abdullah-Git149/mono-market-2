@@ -9,7 +9,8 @@ const initState = {
     postEditErrors: [],
     allPosts: [],
     count: 0,
-    perPage: 0
+    perPage: 0,
+    postDetail: {}
 }
 
 export const PostReducer = (state = initState, action) => {
@@ -32,8 +33,9 @@ export const PostReducer = (state = initState, action) => {
         return { ...state, redirect: false }
     } else if (action.type === 'REMOVE_MESSAGE') {
         return { ...state, message: "" }
+    } else if (action.type === 'SET_DETAIL') {
+        return { ...state, postDetail: action.payload }
     } else {
-
         return state
     }
 }
