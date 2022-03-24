@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
+import AOS from "aos"
 const About = () => {
-
+  AOS.init({
+    offset: 420,
+    duration: 800,
+  });
   const { user } = useSelector((state) => state.AuthReducer);
     const dispatch = useDispatch();
 
@@ -169,7 +173,7 @@ const About = () => {
                     style={{ paddingTop: "60px", paddingBottom: "60px" }}
                   >
                     <div className="section_wrapper mcb-section-inner">
-                      <div className="wrap mcb-wrap one-third valign-top clearfix">
+                      <div className="wrap mcb-wrap one-third valign-top clearfix animate__animated animate__backInDown" data-aos="fade-right">
                         <div className="mcb-wrap-inner">
                           <div className="column mcb-column one column_column  column-margin-20px">
                             <div className="column_attr clearfix">
@@ -212,8 +216,8 @@ const About = () => {
                       </div>
                       <div
                         className="wrap mcb-wrap two-third valign-top clearfix"
-                        style={{ padding: "0 0 0 5%" }}
-                      >
+                        style={{ padding: "0 0 0 5%" } }
+                        data-aos="fade-left">
                         <div className="mcb-wrap-inner">
                           <div className="column mcb-column one-third column_our_team ">
                             <div className="team team_circle">
@@ -449,7 +453,7 @@ const About = () => {
                               <h2>How it Works</h2>
                             </div>
                           </div>
-                          <div className="column mcb-column one-third column_column">
+                          <div className="column mcb-column one-third column_column" data-aos="zoom-in">
                             <div
                               className="column_attr clearfix"
                               style={{
@@ -470,7 +474,7 @@ const About = () => {
                               </h5>
                             </div>
                           </div>
-                          <div className="column mcb-column one-third column_column">
+                          <div className="column mcb-column one-third column_column" data-aos="zoom-in">
                             <div
                               className="column_attr clearfix"
                               style={{
@@ -490,7 +494,7 @@ const About = () => {
                               </h5>
                             </div>
                           </div>
-                          <div className="column mcb-column one-third column_column">
+                          <div className="column mcb-column one-third column_column" data-aos="zoom-in">
                             <div
                               className="column_attr clearfix"
                               style={{

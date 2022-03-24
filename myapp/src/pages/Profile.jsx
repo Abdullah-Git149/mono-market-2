@@ -7,7 +7,14 @@ import { fetchPosts } from "../store/actions/postAction"
 import { FaEdit, FaTrash } from "react-icons/fa";
 import moment from "moment"
 import axios from "axios"
+import AOS from "aos"
+
 const Profile = () => {
+
+  AOS.init({
+    offset: 120,
+    duration: 800,
+  });
   const { user, token } = useSelector((state) => state.AuthReducer);
 
   const { redirect, message, loading } = useSelector((state) => state.PostReducer);
@@ -330,10 +337,10 @@ const Profile = () => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one-second column_column">
+                            <div className="column mcb-column one-second column_column" data-aos="fade-right">
                               <Link to="/advertise">Create an AD</Link>
                             </div>
-                            <div className="column mcb-column one-second column_column">
+                            <div className="column mcb-column one-second column_column" data-aos="fade-left">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}
@@ -395,7 +402,7 @@ const Profile = () => {
                               <div className="posts">
                                 {posts.length > 0 ? posts.map((post) => (
                                   <>
-                                    <div key={post._id} className="posts_child"  >
+                                    <div key={post._id} className="posts_child" data-aos="zoom-in-up" >
                                       <Link to={`/detail/${post._id}`}>
                                         <div className="addional">
                                           <h1>Ad </h1>

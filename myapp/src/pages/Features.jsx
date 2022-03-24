@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
+import AOS from "aos"
 
 const Features = () => {
+
+  AOS.init({
+    offset: 820,
+    duration: 800,
+  });
   const { user } = useSelector((state) => state.AuthReducer);
    const dispatch = useDispatch();
 
@@ -200,7 +206,7 @@ const Features = () => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column" data-aos="flip-up">
                               <div
                                 className="column_attr clearfix"
                                 style={{
@@ -220,7 +226,7 @@ const Features = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column" data-aos="flip-up">
                               <div
                                 className="column_attr clearfix"
                                 style={{
@@ -240,7 +246,7 @@ const Features = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column"  data-aos="flip-up">
                               <div
                                 className="column_attr clearfix"
                                 style={{
@@ -263,7 +269,7 @@ const Features = () => {
                             <div className="column mcb-column one column_divider ">
                               <hr className="no_line" />
                             </div>
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column" data-aos="flip-down">
                               <div
                                 className="column_attr clearfix"
                                 style={{
@@ -283,7 +289,7 @@ const Features = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column" data-aos="flip-down">
                               <div
                                 className="column_attr clearfix"
                                 style={{
@@ -303,7 +309,7 @@ const Features = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column" data-aos="flip-down">
                               <div
                                 className="column_attr clearfix"
                                 style={{
@@ -371,6 +377,7 @@ const Features = () => {
                         <div
                           className="wrap mcb-wrap one-second  valign-middle clearfix"
                           style={{ padding: "0 2%" }}
+                          data-aos="fade-right"
                         >
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_image ">
@@ -388,7 +395,7 @@ const Features = () => {
                         <div
                           className="wrap mcb-wrap one-second valign-middle clearfix"
                           style={{ padding: "0 2%" }}
-                        >
+                          data-aos="fade-left">
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix">
@@ -431,11 +438,13 @@ const Features = () => {
                     <div
                       className="section mcb-section equal-height-wrap"
                       style={{ paddingTop: "0px", paddingBottom: "80px" }}
+                     
                     >
                       <div className="section_wrapper mcb-section-inner">
                         <div
                           className="wrap mcb-wrap one-second  valign-middle clearfix"
                           style={{ padding: "0 2%" }}
+                          data-aos="fade-left"
                         >
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_column">
@@ -475,6 +484,7 @@ const Features = () => {
                         <div
                           className="wrap mcb-wrap one-second valign-middle clearfix"
                           style={{ padding: "0 2%" }}
+                          data-aos="fade-right"
                         >
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_image ">
@@ -494,11 +504,13 @@ const Features = () => {
                     <div
                       className="section mcb-section equal-height-wrap"
                       style={{ paddingTop: "0px", paddingBottom: "80px" }}
+                    
                     >
                       <div className="section_wrapper mcb-section-inner">
                         <div
                           className="wrap mcb-wrap one-second  valign-middle clearfix"
                           style={{ padding: "0 2%" }}
+                          data-aos="fade-right"
                         >
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_image ">
@@ -516,6 +528,7 @@ const Features = () => {
                         <div
                           className="wrap mcb-wrap one-second valign-middle clearfix"
                           style={{ padding: "0 2%" }}
+                          data-aos="fade-left"
                         >
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_column">

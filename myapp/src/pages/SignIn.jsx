@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { userLogIn } from "../store/actions/userAction";
 import Homefooter from "../components/Homefooter";
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
+  AOS.init({
+    offset: 120,
+    duration: 800,
+  });
   const [state, setState] = useState({
     username: "",
     user_password: "",
@@ -28,15 +32,15 @@ const SignIn = () => {
     dispatch(userLogIn(state));
   };
   useEffect(() => {
-  
+
     if (loginErrors.length > 0) {
       loginErrors.map((error) => toast.error(error.msg));
     }
-    
+
     if (user) {
       navigate("/profile");
     }
-  }, [loginErrors,user]);
+  }, [loginErrors, user]);
   return (
     <>
       <body className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">
@@ -188,7 +192,7 @@ const SignIn = () => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column"  data-aos="fade-right">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}
@@ -254,7 +258,7 @@ const SignIn = () => {
                                 </h6>
                               </div>
                             </div>
-                            <div className="column mcb-column two-third column_column">
+                            <div className="column mcb-column two-third column_column"  data-aos="fade-left">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}

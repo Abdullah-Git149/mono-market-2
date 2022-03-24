@@ -5,9 +5,14 @@ import { userSave } from "../store/actions/userAction";
 // import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Homefooter from "../components/Homefooter";
+import AOS from "aos"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const SignAndLogin = (props) => {
+  AOS.init({
+    offset: 320,
+    duration: 800,
+  });
   const [state, setState] = useState({
     user_fullname: "",
     user_country: "",
@@ -237,7 +242,7 @@ const SignAndLogin = (props) => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one-third column_column">
+                            <div className="column mcb-column one-third column_column" data-aos="fade-right">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}
@@ -303,7 +308,7 @@ const SignAndLogin = (props) => {
                                 </h6>
                               </div>
                             </div>
-                            <div className="column mcb-column two-third column_column">
+                            <div className="column mcb-column two-third column_column" data-aos="fade-left">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}

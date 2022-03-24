@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
+import AOS from "aos"
 
 const PriceListing = () => {
+  AOS.init({
+    offset: 320,
+    duration: 800,
+  });
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
 
@@ -45,28 +50,28 @@ const PriceListing = () => {
                           >
                             <img
                               className="logo-main scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-sticky scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-mobile scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-mobile-sticky scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
@@ -144,7 +149,7 @@ const PriceListing = () => {
                       style={{
                         paddingTop: "160px",
                         paddingBottom: "160px",
-                        backgroundImage: "url(images/home_pay_pic11.png)",
+                        backgroundImage: "url(/assets/images/home_pay_pic11.png)",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center bottom",
                       }}
@@ -238,7 +243,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Maecenas malesuada elit lectus felis
                                 </p>
@@ -249,7 +254,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Malesuada ultricies
                                 </p>
@@ -260,7 +265,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Nulla imperdiet sit amet magna
                                 </p>
@@ -271,7 +276,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Vestibulum dapibus, mauris nec
                                 </p>
@@ -357,7 +362,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Maecenas malesuada elit lectus felis
                                 </p>
@@ -368,7 +373,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Malesuada ultricies
                                 </p>
@@ -379,7 +384,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Nulla imperdiet sit amet magna
                                 </p>
@@ -390,7 +395,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Vestibulum dapibus, mauris nec
                                 </p>
@@ -477,7 +482,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="assets/images/home_pay_pricing1.png"
+                                    src="/assets/images/home_pay_pricing1.png"
                                   />{" "}
                                   Maecenas malesuada elit lectus felis
                                 </p>
@@ -488,7 +493,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="images/home_pay_pricing1.png"
+                                    src="/images/home_pay_pricing1.png"
                                   />{" "}
                                   Malesuada ultricies
                                 </p>
@@ -499,7 +504,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="images/home_pay_pricing1.png"
+                                    src="/images/home_pay_pricing1.png"
                                   />{" "}
                                   Nulla imperdiet sit amet magna
                                 </p>
@@ -510,7 +515,7 @@ const PriceListing = () => {
                                       marginRight: "10px",
                                       positive: "relativel top: 4px",
                                     }}
-                                    src="images/home_pay_pricing1.png"
+                                    src="/images/home_pay_pricing1.png"
                                   />{" "}
                                   Vestibulum dapibus, mauris nec
                                 </p>
@@ -540,7 +545,7 @@ const PriceListing = () => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one-second column_column">
+                            <div className="column mcb-column one-second column_column" data-aos="zoom-in-right">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}
@@ -578,7 +583,7 @@ const PriceListing = () => {
                                 </a>
                               </div>
                             </div>
-                            <div className="column mcb-column one-second column_column">
+                            <div className="column mcb-column one-second column_column" data-aos="zoom-in-left">
                               <div
                                 className="column_attr clearfix"
                                 style={{ padding: "0 7% 0 0" }}
@@ -636,7 +641,7 @@ const PriceListing = () => {
                                   <li>
                                     <div className="client_wrapper">
                                       <img
-                                        src="images/home_pay_client1-145x75.png"
+                                        src="/assets/images/home_pay_client1-145x75.png"
                                         className="scale-with-grid wp-post-image"
                                       />
                                     </div>
@@ -644,7 +649,7 @@ const PriceListing = () => {
                                   <li>
                                     <div className="client_wrapper">
                                       <img
-                                        src="images/home_pay_client2-145x75.png"
+                                        src="/assets/images/home_pay_client2-145x75.png"
                                         className="scale-with-grid wp-post-image"
                                       />
                                     </div>
@@ -652,7 +657,7 @@ const PriceListing = () => {
                                   <li>
                                     <div className="client_wrapper">
                                       <img
-                                        src="images/home_pay_client3-145x75.png"
+                                        src="/assets/images/home_pay_client3-145x75.png"
                                         className="scale-with-grid wp-post-image"
                                       />
                                     </div>
@@ -660,7 +665,7 @@ const PriceListing = () => {
                                   <li>
                                     <div className="client_wrapper">
                                       <img
-                                        src="images/home_pay_client4-145x75.png"
+                                        src="/assets/images/home_pay_client4-145x75.png"
                                         className="scale-with-grid wp-post-image"
                                       />
                                     </div>
@@ -668,7 +673,7 @@ const PriceListing = () => {
                                   <li>
                                     <div className="client_wrapper">
                                       <img
-                                        src="images/home_pay_client5-145x75.png"
+                                        src="/assets/images/home_pay_client5-145x75.png"
                                         className="scale-with-grid wp-post-image"
                                       />
                                     </div>
@@ -676,7 +681,7 @@ const PriceListing = () => {
                                   <li>
                                     <div className="client_wrapper">
                                       <img
-                                        src="images/home_pay_client6-145x75.png"
+                                        src="/assets/images/home_pay_client6-145x75.png"
                                         className="scale-with-grid wp-post-image"
                                       />
                                     </div>
@@ -694,7 +699,7 @@ const PriceListing = () => {
                         paddingTop: "80px",
                         paddingBottom: "30px",
                         backgroundColor: "#0b0f2f",
-                        backgroundImage: "url(images/home_pay_sectionbg3.png)",
+                        backgroundImage: "url(/assets/images/home_pay_sectionbg3.png)",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center bottom",
                       }}

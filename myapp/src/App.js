@@ -14,7 +14,15 @@ import Store from "./store";
 import Advertise from "./pages/Advertise";
 import Edit from "./pages/Edit";
 import Details from "./pages/Details";
+import AOS from "aos"
+import 'animate.css';
+
+
 function App() {
+  // AOS.init({
+  //   offset: 820,
+  //   duration: 800,
+  // });
   return (
     <div>
       <Provider store={Store}>

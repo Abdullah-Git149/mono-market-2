@@ -6,7 +6,14 @@ import { allPostsAction } from "../store/actions/postAction"
 import { useEffect } from "react";
 import moment from "moment";
 import Pagination from "./Pagination";
+import AOS from "aos"
+import 'animate.css';
+
 const Home = () => {
+  AOS.init({
+    offset: 320,
+    duration: 800,
+  });
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch()
   let { page } = useParams()
@@ -237,51 +244,53 @@ const Home = () => {
                     }}
                   >
                     <div className="section_wrapper mcb-section-inner">
-                      <div className="wrap mcb-wrap one valign-top clearfix">
-                        <div className="mcb-wrap-inner">
-                          <div className="column mcb-column one-third column_column  column-margin-20px">
-                            <div className="column_attr clearfix">
-                              <h2>
-                                A few reasons why{" "}
-                                <span className="themecolor">Be Pay</span> might
-                                be the right fit
-                              </h2>
+                      <div  data-aos="fade-right"  >
+                        <div className="wrap mcb-wrap one valign-top clearfix"  >
+                          <div className="mcb-wrap-inner">
+                            <div className="column mcb-column one-third column_column  column-margin-20px">
+                              <div className="column_attr clearfix">
+                                <h2>
+                                  A few reasons why{" "}
+                                  <span className="themecolor">Be Pay</span> might
+                                  be the right fit
+                                </h2>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="wrap mcb-wrap one-third valign-top clearfix">
-                        <div className="mcb-wrap-inner">
-                          <div className="column mcb-column one column_column column-margin-20px">
-                            <div className="column_attr clearfix">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Et
-                                leo duis ut diam quam nulla porttitor. Eget nunc
-                                scelerisque viverra mauris in. Venenatis cras
-                                sed felis eget velit aliquet sagittis id. Sit
-                                amet est placerat in egestas. Mauris rhoncus
-                                orci.
-                              </p>
+                        <div className="wrap mcb-wrap one-third valign-top clearfix">
+                          <div className="mcb-wrap-inner">
+                            <div className="column mcb-column one column_column column-margin-20px">
+                              <div className="column_attr clearfix">
+                                <p>
+                                  Lorem ipsum dolor sit amet, consectetur
+                                  adipiscing elit, sed do eiusmod tempor
+                                  incididunt ut labore et dolore magna aliqua. Et
+                                  leo duis ut diam quam nulla porttitor. Eget nunc
+                                  scelerisque viverra mauris in. Venenatis cras
+                                  sed felis eget velit aliquet sagittis id. Sit
+                                  amet est placerat in egestas. Mauris rhoncus
+                                  orci.
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                          <div className="column mcb-column one column_button">
-                            <a
-                              className="button  button_right button_size_2 button_js"
-                              href="content/pay/features.html"
-                            >
-                              <span className="button_icon">
-                                <i className="icon-menu" />
-                              </span>
-                              <span className="button_label">Learn more</span>
-                            </a>
-                          </div>
-                          <div className="column mcb-column one column_divider ">
-                            <hr
-                              className="no_line"
-                              style={{ margin: "0 auto 20px" }}
-                            />
+                            <div className="column mcb-column one column_button">
+                              <a
+                                className="button  button_right button_size_2 button_js"
+                                href="content/pay/features.html"
+                              >
+                                <span className="button_icon">
+                                  <i className="icon-menu" />
+                                </span>
+                                <span className="button_label">Learn more</span>
+                              </a>
+                            </div>
+                            <div className="column mcb-column one column_divider ">
+                              <hr
+                                className="no_line"
+                                style={{ margin: "0 auto 20px" }}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -290,7 +299,7 @@ const Home = () => {
                         style={{ padding: "0 0 0 5%" }}
                       >
 
-                        <div className="mcb-wrap-inner">
+                        <div className="mcb-wrap-inner" data-aos="fade-left">
                           <div className="homerow">
 
                             {!loading ? allPosts.length > 0 ? allPosts.map((post) => (
