@@ -128,4 +128,15 @@ const postDetails = async (req, res) => {
 
     }
 }
-module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost, postValidator, deletePost, postDetails, homePosts }
+
+const getAllPosts = async (req, res) => {
+    try {
+        const posts = await Post.find({})
+        const count = await Post.find({}).countDocuments()
+        return res.status(200).json({ status: 1, count, posts })
+    } catch (error) {
+
+        return res.status(500).json({ errors: error, msg: error.message })
+    }
+}
+module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost,getAllPosts, postValidator, deletePost, postDetails, homePosts }
