@@ -48,32 +48,48 @@ const Edit = () => {
         dispatch(updateAction({
             amount: state.amount,
             post_currency: state.post_currency,
+            ratio: state.ratio,
+            calcValue: state.calcValue,
             id: post._id
 
         }))
     }
+    useEffect(() => {
+        if (postStatus) {
+            // setState({
+            //     amount: post.amount,
+            //     post_currency: post.post_currency,
+            //     ratio: post.ratio,
+            //     calcValue: post.calcValue
+            // })
+            dispatch({ type: "POST_RESET" })
+        } else {
+
+            dispatch(fetchPost(id))
+        }
+    }, [post])
     const handleInputs = (e) => {
         if (state.post_currency === "naira") {
             state.ratio = "2.3"
-            state.calcValue = Math.round(post.amount * 2.3)
+            state.calcValue = Math.round(state.amount * 2.3)
 
         } else if (state.post_currency === "dollar") {
             state.ratio = "2"
-            state.calcValue = Math.round(post.amount * 2)
+            state.calcValue = Math.round(state.amount * 2)
 
         } else if (state.post_currency === "euro") {
             state.ratio = "2.5"
-            state.calcValue = Math.round(post.amount * 2.5)
+            state.calcValue = Math.round(state.amount * 2.5)
 
         } else if (state.post_currency === "pound") {
             state.ratio = "2.1"
-            state.calcValue = Math.round(post.amount * 2.1)
+            state.calcValue = Math.round(state.amount * 2.1)
         } else if (state.post_currency === "mexico pesa") {
             state.ratio = "2.4"
-            state.calcValue = Math.round(post.amount * 2.4)
+            state.calcValue = Math.round(state.amount * 2.4)
         } else if (state.post_currency === "ruppee") {
             state.ratio = "2.6"
-            state.calcValue = Math.round(post.amount * 2.6)
+            state.calcValue = Math.round(state.amount * 2.6)
         }
 
         setState({
@@ -123,20 +139,7 @@ const Edit = () => {
         // })
         // console.log("my state", state)
     }
-    useEffect(() => {
-        if (postStatus) {
-            setState({
-                amount: post.amount,
-                post_currency: post.post_currency,
-                ratio: post.ratio,
-                calcValue: post.calcValue
-            })
-            dispatch({ type: "POST_RESET" })
-        } else {
 
-            dispatch(fetchPost(id))
-        }
-    }, [post])
     useEffect(() => {
         if (postEditErrors !== 0) {
             postEditErrors.map((error) => (
@@ -150,6 +153,7 @@ const Edit = () => {
             navigate("/profile");
         }
     }, [redirect])
+
     return (
         <>
             <div className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">

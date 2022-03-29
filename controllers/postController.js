@@ -77,8 +77,8 @@ const updatePost = async (req, res) => {
             const response = await Post.findByIdAndUpdate(req.body.id, {
                 amount: req.body.amount,
                 post_currency: req.body.post_currency,
-                // ratio: req.body.ratio,
-                // calcValue: req.body.calcValue
+                ratio: req.body.ratio,
+                calcValue: req.body.calcValue
             })
             return res.status(200).json({ msg: "You post has been updated", response })
             console.log(req.body)
