@@ -1,7 +1,48 @@
-const Post = require("../models/Post")
+const { Post, Purchase } = require("../models/Post")
 const formadible = require("formidable")
 const { body, validationResult } = require("express-validator")
+const { User } = require("../models/User")
 const addPost = (req, res) => {
+    try {
+        const form = formadible({ multiples: true })
+        form.parse(req, async (error, fields, files) => {
+            const { _id, user_fullname, amount, calcValue, ratio, post_currency } = fields
+            const errors = []
+            if (amount === '') {
+                errors.push({ msg: "amount is required" })
+            }
+            if (calcValue === '') {
+                errors.push({ msg: "calcValue is required" })
+            }
+            if (ratio === '') {
+                errors.push({ msg: "ratio is required" })
+            }
+            if (post_currency === '') {
+                errors.push({ msg: "post_currency is required" })
+            }
+            if (errors.length !== 0) {
+                res.status(400).json({ errors })
+            } else {
+                const post = await Post.create({
+                    amount: amount,
+                    calcValue: calcValue,
+                    ratio: ratio,
+                    post_currency: post_currency,
+                    user_fullname: user_fullname,
+                    userId: _id
+
+                })
+                await post.save()
+                return res.status(201).json({ msg: "You post is created", post })
+            }
+        })
+
+    } catch (error) {
+        return res.status(404).json({ errors: error, msg: error.message })
+    }
+}
+
+const buyPost = (req, res) => {
     try {
         const form = formadible({ multiples: true })
         form.parse(req, async (error, fields, files) => {
@@ -139,4 +180,30 @@ const getAllPosts = async (req, res) => {
         return res.status(500).json({ errors: error, msg: error.message })
     }
 }
-module.exports = { addPost, fetchPosts, fetchSinglePost, updatePost,getAllPosts, postValidator, deletePost, postDetails, homePosts }
+const purchaseAd = async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId)
+        const post = await Post.findById(req.body.postId)
+
+        if (!user) {
+            return res.status(404).json({ msg: "Please Login" })
+        } else {
+
+            const purchase = await Purchase.create({
+                status_Ad: req.body.status_Ad,
+                post_id: post._id,
+                buyer_id: user._id
+            })
+
+            await purchase.save()
+
+            const count = await Purchase.find({}).where("post_id").equals(req.body.postId).countDocuments()
+            return res.status(201).json({msg:"Purchased AD", status: 1, purchase, count })
+        }
+
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message })
+
+    }
+}
+module.exports = { purchaseAd, addPost, fetchPosts, fetchSinglePost, updatePost, getAllPosts, postValidator, deletePost, postDetails, homePosts }

@@ -109,6 +109,7 @@ const Advertise = () => {
     formData.append('calcValue', state.calcValue)
     formData.append('user_fullname', user_fullname)
     formData.append('_id', _id)
+
     dispatch(createPostAction(formData))
 
     console.log("complete", state)

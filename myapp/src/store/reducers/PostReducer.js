@@ -79,3 +79,11 @@ export const AllPosts = (state = initState, action) => {
         return state
     }
 }
+
+export const PurchaseAD = (state = initState, action) => {
+    if (action.type === "PURCHASE_AD") {
+        return { ...state, message: action.payload }
+    } else {
+        return state
+    }
+}

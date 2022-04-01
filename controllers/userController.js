@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
 const { User } = require("../models/User");
+const Post = require("../models/Post")
 const bcrypt = require("bcrypt");
 
 const registerValidator = [
@@ -29,7 +30,7 @@ const signUpp = async (req, res) => {
   }
 
   try {
-    
+
     const check = await User.findOne({
       username: req.body.username,
       email: req.body.email,
@@ -82,9 +83,9 @@ const signInn = async (req, res) => {
       if (!isMatch) {
         return res
           .status(400)
-          .json({status:0,  errors: [{ msg: "Incorrect Password" }] });
+          .json({ status: 0, errors: [{ msg: "Incorrect Password" }] });
       } else {
-       const token = await user.genarateAuthToken();
+        const token = await user.genarateAuthToken();
         return res.status(200).json({
           status: 1,
           message: `${user.user_fullname} is logged in !`,
@@ -153,4 +154,22 @@ const signInn = async (req, res) => {
 //   }
 // };
 
-module.exports = { signUpp, registerValidator, signInn, loginValidator };
+const buyPost = async (req, res) => {
+  try {
+
+    const post = await Post.findById(req.body.postId)
+    const user = await User.findByIdAndUpdate(req.params.id, { $push: { buy_posts: post._id } }, {
+      new: true
+    })
+    // user.buy_posts = post._id
+
+    const newUser = await user.save()
+
+    return res.status(200).json({ newUser })
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+
+  }
+}
+
+module.exports = { signUpp, registerValidator, signInn, loginValidator, buyPost };

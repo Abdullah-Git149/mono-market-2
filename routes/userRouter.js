@@ -1,6 +1,6 @@
 const express = require("express")
-const router  = express.Router()
-const {upload} = require("../config/utils")
+const router = express.Router()
+const { upload } = require("../config/utils")
 const {
   signIn,
   loginVlidation,
@@ -13,10 +13,12 @@ const {
   registerValidator,
   signInn,
   loginValidator,
+  buyPost
 } = require("../controllers/userController");
 
-router.post("/api/signUpp", upload.single("user_images"),registerValidator, signUpp);
+router.post("/api/signUpp", upload.single("user_images"), registerValidator, signUpp);
 router.post("/api/signInn", loginValidator, signInn);
+router.post("/api/buyAD", buyPost);
 
 
 

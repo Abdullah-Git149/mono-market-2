@@ -6,13 +6,13 @@ export const createPostAction = (formData) => {
     return async (dispatch, getState) => {
         dispatch({ type: "SET_LOADER" })
         const { AuthReducer: { token } } = getState()
-        console.log("your data", token);
         try {
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }
+
             await axios.post("http://localhost:5000/api/addPost", formData, config).then((res) => {
                 console.log("Db data", res)
 
@@ -131,7 +131,7 @@ export const allPostsAction = (page) => {
 export const postDetailAction = (id) => {
     return async (dispatch, getState) => {
         dispatch({ type: "SET_LOADER" })
-        axios.get(`http://localhost:5000/api/details/${id}`).then((res) => {
+        await axios.get(`http://localhost:5000/api/details/${id}`).then((res) => {
             dispatch({ type: "CLOSE_LOADER" })
             console.log(res)
             const postDetail = res.data.post
@@ -141,5 +141,20 @@ export const postDetailAction = (id) => {
             console.log(err)
 
         })
+    }
+}
+export const buyAdAction = (formData) => {
+    return async (dispatch, getState) => {
+        dispatch({ type: "SET_LOADER" })
+        console.log("actionfrom", formData)
+        await axios.post(`http://localhost:5000/api/purchaseAd`, formData).then((res) => {
+            const msg = res.data.msg
+            console.log(res)
+            console.log(msg)
+            dispatch({ type: "PURCHASE_AD", payload: msg })
+        }).catch((err) => {
+            console.log(err);
+        })
+
     }
 }

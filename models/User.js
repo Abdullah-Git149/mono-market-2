@@ -63,6 +63,10 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    buy_posts: {
+      type: Array,
+      required: false,
+    },
   },
   {
     timestamps: true,

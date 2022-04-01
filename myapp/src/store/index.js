@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from "redux"
 import thunkMiddleware from "redux-thunk"
 import AuthReducer from "./reducers/AuthReducer"
-import { PostReducer, FetchPosts, FetchPost, UpdatePost, AllPosts } from "./reducers/PostReducer"
+import { PostReducer, FetchPosts, FetchPost, UpdatePost, AllPosts, PurchaseAD } from "./reducers/PostReducer"
 import { composeWithDevTools } from "redux-devtools-extension"
 const rootReducers = combineReducers({
   AuthReducer,
@@ -9,7 +9,8 @@ const rootReducers = combineReducers({
   FetchPosts,
   FetchPost,
   UpdatePost,
-  AllPosts
+  AllPosts,
+  PurchaseAD
 })
 
 const middleWares = [thunkMiddleware]

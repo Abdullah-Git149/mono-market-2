@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { postDetailAction } from "../store/actions/postAction";
+import { postDetailAction, buyAdAction } from "../store/actions/postAction";
 import { useSelector, useDispatch } from "react-redux";
 import Homefooter from "../components/Homefooter";
 import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const Details = () => {
@@ -11,6 +12,9 @@ const Details = () => {
     const dispatch = useDispatch()
     const { postDetail } = useSelector((state) => state.PostReducer)
     const { user } = useSelector((state) => state.AuthReducer);
+    const { message } = useSelector((state) => state.PurchaseAD);
+
+    console.log("mymsg", message);
     useEffect(() => {
         dispatch(postDetailAction(id))
     }, [id])
@@ -31,12 +35,38 @@ const Details = () => {
             </Link>
         </li>
     );
+
+    const buyADFunction = (e) => {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("post_id", id)
+        formData.append("buyer_id", user._id)
+
+        console.log(formData);
+        dispatch(buyAdAction({
+            postId: id,
+            userId: user._id
+        }))
+    }
+    useEffect(() => {
+        toast.success(message)
+    }, [message])
     return (
         <>
             <div className="color-custom style-default button-default layout-full-width no-content-padding header-transparent minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-no-borders menuo-right mobile-tb-hide mobile-side-slide mobile-mini-mr-ll tr-content be-reg-2074">
                 <div>
                     <div id="Wrapper">
-
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                        />
                         <div id="Header_wrapper">
                             <header id="Header">
                                 <div className="header_placeholder" />
@@ -274,6 +304,15 @@ const Details = () => {
                                                                 <b> {moment(postDetail.updatedAt).format("MMM Do YY")}</b>
                                                             </span>
                                                         </div>
+                                                        <form action="POST" onSubmit={buyADFunction}>
+                                                            <div className="column one">
+                                                                <input
+                                                                    type="submit"
+                                                                    value="Buy Now"
+                                                                    id="submit"
+                                                                />
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

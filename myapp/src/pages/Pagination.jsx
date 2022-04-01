@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-const Pagination = ({ count, perPage, page }) => {
+const Pagination = ({ page, count, perPage }) => {
     let totalPages = Math.ceil(count / perPage)
     let startLoop = page
     let diff = totalPages - page

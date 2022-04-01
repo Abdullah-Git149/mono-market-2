@@ -45,13 +45,31 @@ const postSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User'
-        }
+        },
+       
     },
     {
         timestamps: true,
     }
 )
 
+const purchaseTable = mongoose.Schema({
+    status_Ad:{
+        type:String,
+        require:false,
+    },
+    post_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        require:true,
+        ref:"Post"
+    },
+    buyer_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        require:true,
+        ref:"User"
+    }
+})
 const Post = mongoose.model("Post", postSchema)
+const Purchase = mongoose.model("Purchase", purchaseTable)
 
-module.exports = Post
+module.exports = {Post , Purchase}
