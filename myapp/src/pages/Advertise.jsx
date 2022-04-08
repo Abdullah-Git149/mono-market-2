@@ -46,7 +46,6 @@ const Advertise = () => {
     } else if (state.post_currency === "euro") {
       state.ratio = "2.5"
       state.calcValue = Math.round(state.amount * 2.5)
-
     } else if (state.post_currency === "pound") {
       state.ratio = "2.1"
       state.calcValue = Math.round(state.amount * 2.1)
