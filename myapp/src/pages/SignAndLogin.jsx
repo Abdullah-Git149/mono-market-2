@@ -156,7 +156,7 @@ const SignAndLogin = (props) => {
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/pricingList">
+                                <Link to="/pricingList" className="disspear">
                                   <span>Pricing list</span>
                                 </Link>
                               </li>

@@ -239,7 +239,7 @@ const Advertise = () => {
                               {Links}
                             </ul>
                           </nav>
-                          <a className="responsive-menu-toggle" href="#">
+                          <a className="responsive-menu-toggle" href="">
                             <i className="icon-menu-fine" />
                           </a>
                         </div>
@@ -481,7 +481,7 @@ const Advertise = () => {
                             </div>
                             <div className="column mcb-column one-second column_column">
                               <div
-                                className="column_attr clearfix"
+                                className="column_attr clearfix disspear"
                                 style={{ padding: "0 7% 0 0" }}
                               >
                                 <h2>
@@ -528,7 +528,7 @@ const Advertise = () => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one column_clients_slider ">
+                            <div className="column mcb-column one column_clients_slider disspear">
                               <div className="clients_slider">
                                 <div className="clients_slider_header">
                                   <h4 className="title">Clients</h4>
@@ -607,10 +607,7 @@ const Advertise = () => {
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix align_center">
                                 <h2>Follow us on social media</h2>
-                                <h5 style={{ color: "#aeb0f3" }}>
-                                  Vestibulum dapibus, mauris nec malesuada fames
-                                  ac turpis velit
-                                </h5>
+
                                 <hr
                                   className="no_line"
                                   style={{ margin: "0 auto 25px" }}

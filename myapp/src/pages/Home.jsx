@@ -114,7 +114,7 @@ const Home = () => {
                               </Link>
                             </li>
                             <li>
-                              <Link to="/pricingList">
+                              <Link to="/pricingList" className="disspear">
                                 <span>Pricing list</span>
                               </Link>
                             </li>
@@ -244,7 +244,7 @@ const Home = () => {
                     }}
                   >
                     <div className="section_wrapper mcb-section-inner">
-                      <div  data-aos="fade-right"  >
+                      <div  data-aos="fade-right" className="disspear"  >
                         <div className="wrap mcb-wrap one valign-top clearfix"  >
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one-third column_column  column-margin-20px">
@@ -443,7 +443,7 @@ const Home = () => {
                     className="section mcb-section"
                     style={{ paddingTop: "40px", paddingBottom: "20px" }}
                   >
-                    <div className="section_wrapper mcb-section-inner">
+                    <div className="section_wrapper mcb-section-inner disspear">
                       <div className="wrap mcb-wrap one valign-top clearfix">
                         <div className="mcb-wrap-inner">
                           <div className="column mcb-column one column_clients_slider dark">
@@ -514,7 +514,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div
-                    className="section mcb-section"
+                    className="section mcb-section disspear"
                     style={{
                       paddingTop: "80px",
                       paddingBottom: "30px",

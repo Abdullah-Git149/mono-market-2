@@ -96,7 +96,7 @@ const About = () => {
                               </Link>
                             </li>
                             <li>
-                              <Link to="/pricingList">
+                              <Link to="/pricingList" className="disspear">
                                 <span>Pricing list</span>
                               </Link>
                             </li>
@@ -460,7 +460,7 @@ const About = () => {
                                 backgroundColor: "#121039",
                                 padding: "25px 30px 10px",
                                 borderRadius: "15px",
-                                height: "350px",
+                               
                               }}
                             >
                               <img
@@ -481,7 +481,7 @@ const About = () => {
                                 backgroundColor: "#121039",
                                 padding: "25px 30px 10px",
                                 borderRadius: "15px",
-                                height: "350px",
+                           
                               }}
                             >
                               <img
@@ -501,7 +501,7 @@ const About = () => {
                                 backgroundColor: "#121039",
                                 padding: "25px 30px 10px",
                                 borderRadius: "15px",
-                                height: "350px",
+                           
                               }}
                             >
                               <img
@@ -581,7 +581,7 @@ const About = () => {
                     <div className="section_wrapper mcb-section-inner">
                       <div className="wrap mcb-wrap one valign-top clearfix">
                         <div className="mcb-wrap-inner">
-                          <div className="column mcb-column one column_clients_slider ">
+                          <div className="column mcb-column one column_clients_slider disspear ">
                             <div className="clients_slider">
                               <div className="clients_slider_header">
                                 <h4 className="title">Clients</h4>
@@ -659,10 +659,7 @@ const About = () => {
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix align_center">
                                 <h2>Follow us on social media</h2>
-                                <h5 style={{ color: "#aeb0f3" }}>
-                                  Vestibulum dapibus, mauris nec malesuada fames
-                                  ac turpis velit
-                                </h5>
+
                                 <hr
                                   className="no_line"
                                   style={{ margin: "0 auto 25px" }}

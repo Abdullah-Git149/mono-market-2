@@ -6,7 +6,7 @@ import AOS from "aos"
 const Features = () => {
 
   AOS.init({
-    offset: 820,
+    offset: 420,
     duration: 800,
   });
   const { user } = useSelector((state) => state.AuthReducer);
@@ -53,28 +53,28 @@ const Features = () => {
                           >
                             <img
                               className="logo-main scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-sticky scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-mobile scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-mobile-sticky scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
@@ -100,7 +100,7 @@ const Features = () => {
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/pricingList">
+                                <Link to="/pricingList" className="disspear">
                                   <span>Pricing list</span>
                                 </Link>
                               </li>
@@ -121,7 +121,7 @@ const Features = () => {
                               {Links}
                             </ul>
                           </nav>
-                          <a className="responsive-menu-toggle" href="#">
+                          <a className="responsive-menu-toggle" href="">
                             <i className="icon-menu-fine" />
                           </a>
                         </div>
@@ -163,12 +163,12 @@ const Features = () => {
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix align_center">
                                 <h1>Features</h1>
-                                <h5 className="themecolor">
+                                {/* <h5 className="themecolor">
                                   Lorem ipsum dolor sit amet, consectetur
                                   adipiscing elit. Nulla mauris dolor,
                                   <br /> gravida a varius blandit, auctor eget
                                   purus.
-                                </h5>
+                                </h5> */}
                               </div>
                             </div>
                           </div>
@@ -356,7 +356,7 @@ const Features = () => {
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one column_column">
-                              <div className="column_attr clearfix align_center">
+                              <div className="column_attr clearfix align_center disspear">
                                 <h1>Use Case</h1>
                                 <h5 className="themecolor">
                                   Lorem ipsum dolor sit amet, consectetur
@@ -708,7 +708,7 @@ const Features = () => {
                       <div className="section_wrapper mcb-section-inner">
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
-                            <div className="column mcb-column one column_clients_slider ">
+                            <div className="column mcb-column one column_clients_slider disspear">
                               <div className="clients_slider">
                                 <div className="clients_slider_header">
                                   <h4 className="title">Clients</h4>
@@ -787,10 +787,7 @@ const Features = () => {
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix align_center">
                                 <h2>Follow us on social media</h2>
-                                <h5 style={{ color: "#aeb0f3" }}>
-                                  Vestibulum dapibus, mauris nec malesuada fames
-                                  ac turpis velit
-                                </h5>
+                               
                                 <hr
                                   className="no_line"
                                   style={{ margin: "0 auto 25px" }}

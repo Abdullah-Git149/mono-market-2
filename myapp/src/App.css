@@ -1,0 +1,23 @@
+.profile__flex{
+    display: "flex";
+    align-items: "center";
+    justify-content: "space-between";
+    width: 40%;
+  }
+  
+
+@media (max-width: 360px) {
+
+    .disspear{
+      display: none !important;
+    }
+    .my__flex{
+        width: 100% !important; 
+        
+    }
+    .padding{
+        margin: 0 25px;
+    }
+  
+  }
+ 

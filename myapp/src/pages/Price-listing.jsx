@@ -97,7 +97,7 @@ const PriceListing = () => {
                                 </Link>
                               </li>
                               <li className="current-menu-item">
-                                <Link to="/pricingList">
+                                <Link to="/pricingList" className="disspear">
                                   <span>Pricing list</span>
                                 </Link>
                               </li>

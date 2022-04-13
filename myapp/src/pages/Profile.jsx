@@ -8,7 +8,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import moment from "moment"
 import axios from "axios"
 import AOS from "aos"
-
+import { FaPlus } from "react-icons/fa"
 const Profile = () => {
 
   AOS.init({
@@ -119,28 +119,28 @@ const Profile = () => {
                           >
                             <img
                               className="logo-main scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-sticky scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-mobile scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
                             />
                             <img
                               className="logo-mobile-sticky scale-with-grid"
-                              src="assets/images/pay.png"
+                              src="/assets/images/pay.png"
                               data-retina="images/retina-pay.png"
                               data-height={75}
                               alt="pay"
@@ -166,7 +166,7 @@ const Profile = () => {
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/pricingList">
+                                <Link to="/pricingList" className="disspear">
                                   <span>Pricing list</span>
                                 </Link>
                               </li>
@@ -183,7 +183,7 @@ const Profile = () => {
                               {Links}
                             </ul>
                           </nav>
-                          <a className="responsive-menu-toggle" href="#">
+                          <a className="responsive-menu-toggle" href="">
                             <i className="icon-menu-fine" />
                           </a>
                         </div>
@@ -225,12 +225,12 @@ const Profile = () => {
                             <div className="column mcb-column one column_column">
                               <div className="column_attr clearfix align_center">
                                 <h1>Profile</h1>
-                                <h5 className="themecolor">
+                                {/* <h5 className="themecolor">
                                   Suspendisse a pellentesque dui, non felis.
                                   Maecenas malesuada elit
                                   <br /> lectus felis, malesuada
                                   ultricies.Curabitur et ligula.
-                                </h5>
+                                </h5> */}
                               </div>
                             </div>
                           </div>
@@ -238,12 +238,12 @@ const Profile = () => {
                       </div>
                     </div>
                     <div
-                      className="section mcb-section no-margin-h"
+                      className="section mcb-section no-margin-h "
                       style={{ paddingTop: "0px", paddingBottom: "50px" }}
                     >
-                      <div className="section_wrapper mcb-section-inner">
+                      <div className="section_wrapper mcb-section-inner ">
                         <div
-                          className="wrap mcb-wrap one valign-top clearfix"
+                          className="wrap mcb-wrap one valign-top clearfix my__flex"
                           style={{ marginTop: "-160px" }}
                         >
                           <div className="mcb-wrap-inner">
@@ -254,6 +254,7 @@ const Profile = () => {
                                 justifyContent: "space-between",
                                 width: "40%",
                               }}
+                              className="profile__flex"
                             >
                               {/* <h4>Profile Image</h4>
                             
@@ -267,9 +268,10 @@ const Profile = () => {
                                 justifyContent: "space-between",
                                 width: "40%",
                               }}
+                             
                             >
                               <h4>Name</h4>
-                              <span>
+                              <span   className="padding">
                                 <b> {user.user_fullname}</b>
                               </span>
                             </div>
@@ -283,7 +285,7 @@ const Profile = () => {
                               }}
                             >
                               <h4>Country</h4>
-                              <span>
+                              <span  className="padding">
                                 <b> {user.user_country}</b>
                               </span>
                             </div>
@@ -296,7 +298,7 @@ const Profile = () => {
                               }}
                             >
                               <h4>Currency</h4>
-                              <span>
+                              <span className="padding">
                                 <b> {user.user_currency}</b>
                               </span>
                             </div>
@@ -308,8 +310,8 @@ const Profile = () => {
                                 width: "40%",
                               }}
                             >
-                              <h4>Email</h4>
-                              <span>
+                              <h4 >Email</h4>
+                              <span className="padding">
                                 <b> {user.user_email}</b>
                               </span>
                             </div>
@@ -321,8 +323,8 @@ const Profile = () => {
                                 width: "40%",
                               }}
                             >
-                              <h4>Contact</h4>
-                              <span>
+                              <h4 >Contact</h4>
+                              <span className="padding">
                                 <b> {user.user_contact}</b>
                               </span>
                             </div>
@@ -338,11 +340,23 @@ const Profile = () => {
                         <div className="wrap mcb-wrap one valign-top clearfix">
                           <div className="mcb-wrap-inner">
                             <div className="column mcb-column one-second column_column" data-aos="fade-right">
-                              <Link to="/advertise">Create an AD</Link>
+                              <Link
+                                className="button  button_right button_size_2 button_js"
+                                to="/advertise"
+                                style={{
+                                  backgroundColor: "#4351a5 !important",
+                                  color: "#fff",
+                                }}
+                              >
+                                <span className="button_icon">
+                                  <FaPlus />
+                                </span>
+                                <span className="button_label">Create an AD</span>
+                              </Link>
                             </div>
                             <div className="column mcb-column one-second column_column" data-aos="fade-left">
                               <div
-                                className="column_attr clearfix"
+                                className="column_attr clearfix disspear"
                                 style={{ padding: "0 7% 0 0" }}
                               >
                                 <h2>
